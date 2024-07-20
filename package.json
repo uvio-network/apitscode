@@ -1,0 +1,34 @@
+{
+  "name": "@uvio-network/apitscode",
+  "version": "0.8.16",
+  "description": "apischema based generated typescript code",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"nothing to test\"",
+    "build": "echo \"nothing to build\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uvio-network/apitscode.git"
+  },
+  "author": "xh3b4sd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uvio-network/apitscode/issues"
+  },
+  "homepage": "https://github.com/uvio-network/apitscode",
+  "dependencies": {
+    "@protobuf-ts/plugin": "^2.9.3",
+    "@protobuf-ts/protoc": "^2.9.3",
+    "@protobuf-ts/runtime": "^2.9.3",
+    "@protobuf-ts/runtime-rpc": "^2.9.3",
+    "@protobuf-ts/twirp-transport": "^2.9.3",
+    "abort-controller": "^3.0.0",
+    "node-fetch": "^3.3.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.6.9"
+  }
+}
