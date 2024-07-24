@@ -14,7 +14,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         "object": [
  *             {
  *                 "intern": {
- *                     "post": "778237"
+ *                     "id": "778237"
  *                 },
  *                 "update": [
  *                     {
@@ -70,11 +70,11 @@ export interface UpdateI_Object {
  */
 export interface UpdateI_Object_Intern {
   /**
-   * post is the ID of the post being updated.
+   * id is the ID of the post object being updated.
    *
-   * @generated from protobuf field: string post = 100;
+   * @generated from protobuf field: string id = 100;
    */
-  post: string;
+  id: string;
 }
 /**
  * @generated from protobuf message post.UpdateI_Object_Public

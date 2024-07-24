@@ -16,10 +16,11 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                 "public": {
  *                     "expiry": "1689001255",
  *                     "kind": "claim",
+ *                     "lifecycle": "propose",
  *                     "option": "true",
  *                     "stake": "1.5",
  *                     "text": "foo bar lorem ipsum",
- *                     "token": "WETH",
+ *                     "token": "WETH"
  *                 }
  *             }
  *         ]
@@ -79,18 +80,44 @@ export interface CreateI_Object_Public {
    */
   kind: string;
   /**
+   * lifecycle describes the evolutionary stage of a claim within its own tree.
+   * Only posts of kind "claim" will have a lifecycle set.
+   *
+   *     "propose" describes claims that make any initial statement.
+   *
+   *     "resolve" describes claims that allow to verify the truth.
+   *
+   *     "dispute" describes claims that challenge any prior resolution.
+   *
+   *     "nullify" describes claims that question the verifiability of truth.
+   *
+   *
+   * @generated from protobuf field: string lifecycle = 300;
+   */
+  lifecycle: string;
+  /**
    * option is the side of the bet taken with this post, e.g. "true" or "false".
    * If option is "true", then the staked reputation agrees with the given
    * statement. If option is "false", then the staked reputation disagrees with
    * the given statement.
    *
-   * @generated from protobuf field: string option = 300;
+   * @generated from protobuf field: string option = 400;
    */
   option: string;
   /**
+   * parent is the post ID of any claim that references another claim within its
+   * own tree. The first claim within a tree does not have a parent. If a post
+   * is for instance of kind "claim" and has lifecycle "dispute", then parent
+   * will reference the prior claim of kind "resolve" within their common tree,
+   * because any dispute does always try to challange any prior resolution.
+   *
+   * @generated from protobuf field: string parent = 500;
+   */
+  parent: string;
+  /**
    * stake is the amount of reputation staked.
    *
-   * @generated from protobuf field: string stake = 400;
+   * @generated from protobuf field: string stake = 600;
    */
   stake: string;
   /**
@@ -98,13 +125,13 @@ export interface CreateI_Object_Public {
    * statement. This text may be provided in markdown format. This text might as
    * be long as a common blog post. This text might contain external links.
    *
-   * @generated from protobuf field: string text = 500;
+   * @generated from protobuf field: string text = 700;
    */
   text: string;
   /**
    * token is the token in which the staked reputation is denominated.
    *
-   * @generated from protobuf field: string token = 600;
+   * @generated from protobuf field: string token = 800;
    */
   token: string;
 }
@@ -116,7 +143,7 @@ export interface CreateI_Object_Public {
  *             {
  *                 "intern": {
  *                     "created": "1689001255",
- *                     "post": "778237"
+ *                     "id": "778237"
  *                 }
  *             }
  *         ]
@@ -163,11 +190,11 @@ export interface CreateO_Object_Intern {
    */
   created: string;
   /**
-   * post is the ID of the post being created.
+   * id is the ID of the post object being created.
    *
-   * @generated from protobuf field: string post = 200;
+   * @generated from protobuf field: string id = 200;
    */
-  post: string;
+  id: string;
 }
 /**
  * @generated from protobuf message post.CreateO_Object_Public

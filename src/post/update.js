@@ -156,12 +156,12 @@ export const UpdateI_Object = new UpdateI_Object$Type();
 class UpdateI_Object_Intern$Type extends MessageType {
     constructor() {
         super("post.UpdateI_Object_Intern", [
-            { no: 100, name: "post", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
-        message.post = "";
+        message.id = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
@@ -171,8 +171,8 @@ class UpdateI_Object_Intern$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string post */ 100:
-                    message.post = reader.string();
+                case /* string id */ 100:
+                    message.id = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -186,9 +186,9 @@ class UpdateI_Object_Intern$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string post = 100; */
-        if (message.post !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.post);
+        /* string id = 100; */
+        if (message.id !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.id);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

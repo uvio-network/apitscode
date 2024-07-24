@@ -21,7 +21,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         "object": [
  *             {
  *                 "intern": {
- *                     "post": "778237"
+ *                     "id": "778237"
  *                 }
  *             }
  *         ]
@@ -88,20 +88,20 @@ export interface SearchI_Object {
  */
 export interface SearchI_Object_Intern {
   /**
-   * post is the ID of the post being searched. If searching for a particular
-   * post, the search query object must not contain any other fields.
+   * id is the ID of the post object being searched. If searching for a
+   * particular ID, the search query object must not contain any other fields.
    *
-   * @generated from protobuf field: string post = 100;
+   * @generated from protobuf field: string id = 100;
    */
-  post: string;
+  id: string;
   /**
-   * user is the ID of the user having created the posts being searched. If
-   * searching for posts created by a particular user, the search query object
+   * owner is the ID of the user having created the posts being searched. If
+   * searching for posts created by a particular owner, the search query object
    * must not contain any other fields.
    *
-   * @generated from protobuf field: string user = 200;
+   * @generated from protobuf field: string owner = 200;
    */
-  user: string;
+  owner: string;
 }
 /**
  * @generated from protobuf message post.SearchI_Object_Public
@@ -140,15 +140,17 @@ export interface SearchI_Object_Symbol {
  *                 ],
  *                 "intern": {
  *                     "created": "1689001255",
- *                     "post": "778237"
- *                     "user": "551265"
+ *                     "id": "778237"
+ *                     "owner": "551265",
+ *                     "tree": "487465725612222"
  *                 },
  *                 "public": {
  *                     "expiry": "1689001255",
  *                     "kind": "claim",
+ *                     "lifecycle": "propose",
  *                     "stake": "10,2,1,4.843",
  *                     "text": "foo bar lorem ipsum",
- *                     "token": "WETH",
+ *                     "token": "WETH"
  *                 }
  *             }
  *         ]
@@ -220,17 +222,25 @@ export interface SearchO_Object_Intern {
    */
   created: string;
   /**
-   * post is the ID of the post being searched.
+   * id is the ID of the post object being searched.
    *
-   * @generated from protobuf field: string post = 200;
+   * @generated from protobuf field: string id = 300;
    */
-  post: string;
+  id: string;
   /**
-   * user is the ID of the user who created this post.
+   * owner is the ID of the user who created this post.
    *
-   * @generated from protobuf field: string user = 300;
+   * @generated from protobuf field: string owner = 400;
    */
-  user: string;
+  owner: string;
+  /**
+   * tree is the internal list ID within which all referenced claims are grouped
+   * together. Using this tree ID it is possible to search for all claims
+   * belonging to the same lifecycle.
+   *
+   * @generated from protobuf field: string tree = 500;
+   */
+  tree: string;
 }
 /**
  * @generated from protobuf message post.SearchO_Object_Public
@@ -252,12 +262,28 @@ export interface SearchO_Object_Public {
    */
   kind: string;
   /**
+   * lifecycle describes the evolutionary stage of a claim within its own tree.
+   * Only posts of kind "claim" will have a lifecycle set.
+   *
+   *     "propose" describes claims that make any initial statement.
+   *
+   *     "resolve" describes claims that allow to verify the truth.
+   *
+   *     "dispute" describes claims that challenge any prior resolution.
+   *
+   *     "nullify" describes claims that question the verifiability of truth.
+   *
+   *
+   * @generated from protobuf field: string lifecycle = 300;
+   */
+  lifecycle: string;
+  /**
    * option is the side of the bet taken with this post if kind equals
    * "comment". If option does then equal "true", the staked reputation agrees
    * with the given statement. If option does then equal "false", the staked
    * reputation disagrees with the given statement.
    *
-   * @generated from protobuf field: string option = 300;
+   * @generated from protobuf field: string option = 400;
    */
   option: string;
   /**
@@ -279,22 +305,32 @@ export interface SearchO_Object_Public {
    *     participate in teh given market.
    *
    *
-   * @generated from protobuf field: string stake = 400;
+   * @generated from protobuf field: string stake = 500;
    */
   stake: string;
+  /**
+   * parent is the post ID of any claim that references another claim within its
+   * own tree. The first claim within a tree does not have a parent. If a post
+   * is for instance of kind "claim" and has lifecycle "dispute", then parent
+   * will reference the prior claim of kind "resolve" within their common tree,
+   * because any dispute does always try to challange any prior resolution.
+   *
+   * @generated from protobuf field: string parent = 600;
+   */
+  parent: string;
   /**
    * text is the human readable description the user provides in order to make a
    * statement whether kind equals "claim" or "comment". This text may be
    * provided in markdown format. This text might be as long as a common blog
    * post. This text might contain external links.
    *
-   * @generated from protobuf field: string text = 500;
+   * @generated from protobuf field: string text = 700;
    */
   text: string;
   /**
    * token is the token in which the staked reputation is denominated.
    *
-   * @generated from protobuf field: string token = 600;
+   * @generated from protobuf field: string token = 800;
    */
   token: string;
 }

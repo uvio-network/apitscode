@@ -14,7 +14,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         "object": [
  *             {
  *                 "intern": {
- *                     "post": "778237"
+ *                     "id": "778237"
  *                 }
  *             }
  *         ]
@@ -55,11 +55,11 @@ export interface DeleteI_Object {
  */
 export interface DeleteI_Object_Intern {
   /**
-   * post is the ID of the post being deleted.
+   * id is the ID of the post object being deleted.
    *
-   * @generated from protobuf field: string post = 100;
+   * @generated from protobuf field: string id = 100;
    */
-  post: string;
+  id: string;
 }
 /**
  * @generated from protobuf message post.DeleteI_Object_Public

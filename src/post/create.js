@@ -168,17 +168,21 @@ class CreateI_Object_Public$Type extends MessageType {
         super("post.CreateI_Object_Public", [
             { no: 100, name: "expiry", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 200, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "option", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "stake", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 500, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 600, name: "token", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 300, name: "lifecycle", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 400, name: "option", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 500, name: "parent", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 600, name: "stake", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 700, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 800, name: "token", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
         message.expiry = "";
         message.kind = "";
+        message.lifecycle = "";
         message.option = "";
+        message.parent = "";
         message.stake = "";
         message.text = "";
         message.token = "";
@@ -197,16 +201,22 @@ class CreateI_Object_Public$Type extends MessageType {
                 case /* string kind */ 200:
                     message.kind = reader.string();
                     break;
-                case /* string option */ 300:
+                case /* string lifecycle */ 300:
+                    message.lifecycle = reader.string();
+                    break;
+                case /* string option */ 400:
                     message.option = reader.string();
                     break;
-                case /* string stake */ 400:
+                case /* string parent */ 500:
+                    message.parent = reader.string();
+                    break;
+                case /* string stake */ 600:
                     message.stake = reader.string();
                     break;
-                case /* string text */ 500:
+                case /* string text */ 700:
                     message.text = reader.string();
                     break;
-                case /* string token */ 600:
+                case /* string token */ 800:
                     message.token = reader.string();
                     break;
                 default:
@@ -227,18 +237,24 @@ class CreateI_Object_Public$Type extends MessageType {
         /* string kind = 200; */
         if (message.kind !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.kind);
-        /* string option = 300; */
+        /* string lifecycle = 300; */
+        if (message.lifecycle !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.lifecycle);
+        /* string option = 400; */
         if (message.option !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.option);
-        /* string stake = 400; */
+            writer.tag(400, WireType.LengthDelimited).string(message.option);
+        /* string parent = 500; */
+        if (message.parent !== "")
+            writer.tag(500, WireType.LengthDelimited).string(message.parent);
+        /* string stake = 600; */
         if (message.stake !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.stake);
-        /* string text = 500; */
+            writer.tag(600, WireType.LengthDelimited).string(message.stake);
+        /* string text = 700; */
         if (message.text !== "")
-            writer.tag(500, WireType.LengthDelimited).string(message.text);
-        /* string token = 600; */
+            writer.tag(700, WireType.LengthDelimited).string(message.text);
+        /* string token = 800; */
         if (message.token !== "")
-            writer.tag(600, WireType.LengthDelimited).string(message.token);
+            writer.tag(800, WireType.LengthDelimited).string(message.token);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -386,13 +402,13 @@ class CreateO_Object_Intern$Type extends MessageType {
     constructor() {
         super("post.CreateO_Object_Intern", [
             { no: 100, name: "created", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "post", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
         message.created = "";
-        message.post = "";
+        message.id = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
@@ -405,8 +421,8 @@ class CreateO_Object_Intern$Type extends MessageType {
                 case /* string created */ 100:
                     message.created = reader.string();
                     break;
-                case /* string post */ 200:
-                    message.post = reader.string();
+                case /* string id */ 200:
+                    message.id = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -423,9 +439,9 @@ class CreateO_Object_Intern$Type extends MessageType {
         /* string created = 100; */
         if (message.created !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.created);
-        /* string post = 200; */
-        if (message.post !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.post);
+        /* string id = 200; */
+        if (message.id !== "")
+            writer.tag(200, WireType.LengthDelimited).string(message.id);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
