@@ -122,9 +122,17 @@ export interface SearchI_Object_Symbol {
    * time set to "latest" returns all posts in reverse chronological order.
    * Paging is available for paging kind "page" and "unix".
    *
-   * @generated from protobuf field: string time = 300;
+   * @generated from protobuf field: string time = 200;
    */
   time: string;
+  /**
+   * tree set to any valid ID referring to a tree of claims returns all those
+   * claims belonging to the same tree. There is no paging support since the
+   * number of claims that any given tree may have is rather limited.
+   *
+   * @generated from protobuf field: string tree = 300;
+   */
+  tree: string;
 }
 /**
  * SearchO is the output for searching posts.
@@ -224,13 +232,13 @@ export interface SearchO_Object_Intern {
   /**
    * id is the ID of the post object being searched.
    *
-   * @generated from protobuf field: string id = 300;
+   * @generated from protobuf field: string id = 200;
    */
   id: string;
   /**
    * owner is the ID of the user who created this post.
    *
-   * @generated from protobuf field: string owner = 400;
+   * @generated from protobuf field: string owner = 300;
    */
   owner: string;
   /**
@@ -238,7 +246,7 @@ export interface SearchO_Object_Intern {
    * together. Using this tree ID it is possible to search for all claims
    * belonging to the same lifecycle.
    *
-   * @generated from protobuf field: string tree = 500;
+   * @generated from protobuf field: string tree = 400;
    */
   tree: string;
 }
