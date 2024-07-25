@@ -1,6 +1,6 @@
 {
   "name": "@uvio-network/apitscode",
-  "version": "0.0.1",
+  "version": "v0.1.0",
   "description": "apischema based generated typescript code",
   "type": "module",
   "scripts": {
@@ -26,7 +26,7 @@
     "abort-controller": "^3.0.0",
     "node-fetch": "^3.3.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.5.4"
   },
   "devDependencies": {
     "@types/node-fetch": "^2.6.9"
