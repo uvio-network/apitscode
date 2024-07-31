@@ -168,18 +168,20 @@ class CreateI_Object_Public$Type extends MessageType {
         super("post.CreateI_Object_Public", [
             { no: 100, name: "expiry", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 200, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "lifecycle", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "option", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 500, name: "parent", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 600, name: "stake", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 700, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 800, name: "token", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 300, name: "labels", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 400, name: "lifecycle", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 500, name: "option", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 600, name: "parent", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 700, name: "stake", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 800, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 900, name: "token", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
         message.expiry = "";
         message.kind = "";
+        message.labels = "";
         message.lifecycle = "";
         message.option = "";
         message.parent = "";
@@ -201,22 +203,25 @@ class CreateI_Object_Public$Type extends MessageType {
                 case /* string kind */ 200:
                     message.kind = reader.string();
                     break;
-                case /* string lifecycle */ 300:
+                case /* string labels */ 300:
+                    message.labels = reader.string();
+                    break;
+                case /* string lifecycle */ 400:
                     message.lifecycle = reader.string();
                     break;
-                case /* string option */ 400:
+                case /* string option */ 500:
                     message.option = reader.string();
                     break;
-                case /* string parent */ 500:
+                case /* string parent */ 600:
                     message.parent = reader.string();
                     break;
-                case /* string stake */ 600:
+                case /* string stake */ 700:
                     message.stake = reader.string();
                     break;
-                case /* string text */ 700:
+                case /* string text */ 800:
                     message.text = reader.string();
                     break;
-                case /* string token */ 800:
+                case /* string token */ 900:
                     message.token = reader.string();
                     break;
                 default:
@@ -237,24 +242,27 @@ class CreateI_Object_Public$Type extends MessageType {
         /* string kind = 200; */
         if (message.kind !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.kind);
-        /* string lifecycle = 300; */
+        /* string labels = 300; */
+        if (message.labels !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.labels);
+        /* string lifecycle = 400; */
         if (message.lifecycle !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.lifecycle);
-        /* string option = 400; */
+            writer.tag(400, WireType.LengthDelimited).string(message.lifecycle);
+        /* string option = 500; */
         if (message.option !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.option);
-        /* string parent = 500; */
+            writer.tag(500, WireType.LengthDelimited).string(message.option);
+        /* string parent = 600; */
         if (message.parent !== "")
-            writer.tag(500, WireType.LengthDelimited).string(message.parent);
-        /* string stake = 600; */
+            writer.tag(600, WireType.LengthDelimited).string(message.parent);
+        /* string stake = 700; */
         if (message.stake !== "")
-            writer.tag(600, WireType.LengthDelimited).string(message.stake);
-        /* string text = 700; */
+            writer.tag(700, WireType.LengthDelimited).string(message.stake);
+        /* string text = 800; */
         if (message.text !== "")
-            writer.tag(700, WireType.LengthDelimited).string(message.text);
-        /* string token = 800; */
+            writer.tag(800, WireType.LengthDelimited).string(message.text);
+        /* string token = 900; */
         if (message.token !== "")
-            writer.tag(800, WireType.LengthDelimited).string(message.token);
+            writer.tag(900, WireType.LengthDelimited).string(message.token);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

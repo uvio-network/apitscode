@@ -233,13 +233,15 @@ class SearchI_Object_Intern$Type extends MessageType {
     constructor() {
         super("post.SearchI_Object_Intern", [
             { no: 100, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "owner", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "owner", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "tree", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
         message.id = "";
         message.owner = "";
+        message.tree = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
@@ -254,6 +256,9 @@ class SearchI_Object_Intern$Type extends MessageType {
                     break;
                 case /* string owner */ 200:
                     message.owner = reader.string();
+                    break;
+                case /* string tree */ 300:
+                    message.tree = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -273,6 +278,9 @@ class SearchI_Object_Intern$Type extends MessageType {
         /* string owner = 200; */
         if (message.owner !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.owner);
+        /* string tree = 300; */
+        if (message.tree !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.tree);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -286,18 +294,40 @@ export const SearchI_Object_Intern = new SearchI_Object_Intern$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SearchI_Object_Public$Type extends MessageType {
     constructor() {
-        super("post.SearchI_Object_Public", []);
+        super("post.SearchI_Object_Public", [
+            { no: 100, name: "labels", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
+        message.labels = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
     }
     internalBinaryRead(reader, length, options, target) {
-        return target ?? this.create();
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string labels */ 100:
+                    message.labels = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
     }
     internalBinaryWrite(message, writer, options) {
+        /* string labels = 100; */
+        if (message.labels !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.labels);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -313,15 +343,13 @@ class SearchI_Object_Symbol$Type extends MessageType {
     constructor() {
         super("post.SearchI_Object_Symbol", [
             { no: 100, name: "list", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "time", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "tree", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "time", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
         message.list = "";
         message.time = "";
-        message.tree = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
@@ -336,9 +364,6 @@ class SearchI_Object_Symbol$Type extends MessageType {
                     break;
                 case /* string time */ 200:
                     message.time = reader.string();
-                    break;
-                case /* string tree */ 300:
-                    message.tree = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -358,9 +383,6 @@ class SearchI_Object_Symbol$Type extends MessageType {
         /* string time = 200; */
         if (message.time !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.time);
-        /* string tree = 300; */
-        if (message.tree !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.tree);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -643,18 +665,20 @@ class SearchO_Object_Public$Type extends MessageType {
         super("post.SearchO_Object_Public", [
             { no: 100, name: "expiry", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 200, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "lifecycle", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "option", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 500, name: "stake", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 600, name: "parent", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 700, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 800, name: "token", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 300, name: "labels", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 400, name: "lifecycle", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 500, name: "option", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 600, name: "stake", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 700, name: "parent", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 800, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 900, name: "token", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
         message.expiry = "";
         message.kind = "";
+        message.labels = "";
         message.lifecycle = "";
         message.option = "";
         message.stake = "";
@@ -676,22 +700,25 @@ class SearchO_Object_Public$Type extends MessageType {
                 case /* string kind */ 200:
                     message.kind = reader.string();
                     break;
-                case /* string lifecycle */ 300:
+                case /* string labels */ 300:
+                    message.labels = reader.string();
+                    break;
+                case /* string lifecycle */ 400:
                     message.lifecycle = reader.string();
                     break;
-                case /* string option */ 400:
+                case /* string option */ 500:
                     message.option = reader.string();
                     break;
-                case /* string stake */ 500:
+                case /* string stake */ 600:
                     message.stake = reader.string();
                     break;
-                case /* string parent */ 600:
+                case /* string parent */ 700:
                     message.parent = reader.string();
                     break;
-                case /* string text */ 700:
+                case /* string text */ 800:
                     message.text = reader.string();
                     break;
-                case /* string token */ 800:
+                case /* string token */ 900:
                     message.token = reader.string();
                     break;
                 default:
@@ -712,24 +739,27 @@ class SearchO_Object_Public$Type extends MessageType {
         /* string kind = 200; */
         if (message.kind !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.kind);
-        /* string lifecycle = 300; */
+        /* string labels = 300; */
+        if (message.labels !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.labels);
+        /* string lifecycle = 400; */
         if (message.lifecycle !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.lifecycle);
-        /* string option = 400; */
+            writer.tag(400, WireType.LengthDelimited).string(message.lifecycle);
+        /* string option = 500; */
         if (message.option !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.option);
-        /* string stake = 500; */
+            writer.tag(500, WireType.LengthDelimited).string(message.option);
+        /* string stake = 600; */
         if (message.stake !== "")
-            writer.tag(500, WireType.LengthDelimited).string(message.stake);
-        /* string parent = 600; */
+            writer.tag(600, WireType.LengthDelimited).string(message.stake);
+        /* string parent = 700; */
         if (message.parent !== "")
-            writer.tag(600, WireType.LengthDelimited).string(message.parent);
-        /* string text = 700; */
+            writer.tag(700, WireType.LengthDelimited).string(message.parent);
+        /* string text = 800; */
         if (message.text !== "")
-            writer.tag(700, WireType.LengthDelimited).string(message.text);
-        /* string token = 800; */
+            writer.tag(800, WireType.LengthDelimited).string(message.text);
+        /* string token = 900; */
         if (message.token !== "")
-            writer.tag(800, WireType.LengthDelimited).string(message.token);
+            writer.tag(900, WireType.LengthDelimited).string(message.token);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

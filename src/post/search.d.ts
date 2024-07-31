@@ -102,11 +102,31 @@ export interface SearchI_Object_Intern {
    * @generated from protobuf field: string owner = 200;
    */
   owner: string;
+  /**
+   * tree set to any valid ID referring to a tree of claims returns all those
+   * claims belonging to the same tree. There is no paging support since the
+   * number of claims that any given tree may have is rather limited.
+   *
+   * @generated from protobuf field: string tree = 300;
+   */
+  tree: string;
 }
 /**
  * @generated from protobuf message post.SearchI_Object_Public
  */
-export interface SearchI_Object_Public {}
+export interface SearchI_Object_Public {
+  /**
+   * labels is the comma separated list of categories for which claims are being
+   * searched. Providing multiple labels implies to search for the intersection
+   * of all the given labels. That is, searching for { A, B, C } will only
+   * return claim objects that are associated to A, B and C. In other words,
+   * claims that are associated to A and B, but not to C, will not be returned
+   * in the example above.
+   *
+   * @generated from protobuf field: string labels = 100;
+   */
+  labels: string;
+}
 /**
  * @generated from protobuf message post.SearchI_Object_Symbol
  */
@@ -125,14 +145,6 @@ export interface SearchI_Object_Symbol {
    * @generated from protobuf field: string time = 200;
    */
   time: string;
-  /**
-   * tree set to any valid ID referring to a tree of claims returns all those
-   * claims belonging to the same tree. There is no paging support since the
-   * number of claims that any given tree may have is rather limited.
-   *
-   * @generated from protobuf field: string tree = 300;
-   */
-  tree: string;
 }
 /**
  * SearchO is the output for searching posts.
@@ -155,8 +167,9 @@ export interface SearchI_Object_Symbol {
  *                 "public": {
  *                     "expiry": "1689001255",
  *                     "kind": "claim",
+ *                     "labels": "economy,inflation",
  *                     "lifecycle": "propose",
- *                     "stake": "10,2,1,4.843",
+ *                     "stake": "10,2,1,1,4.843",
  *                     "text": "foo bar lorem ipsum",
  *                     "token": "WETH"
  *                 }
@@ -270,8 +283,17 @@ export interface SearchO_Object_Public {
    */
   kind: string;
   /**
+   * labels is a comma separated list of category labels that this claim is
+   * related to.
+   *
+   * @generated from protobuf field: string labels = 300;
+   */
+  labels: string;
+  /**
    * lifecycle describes the evolutionary stage of a claim within its own tree.
    * Only posts of kind "claim" will have a lifecycle set.
+   *
+   *     "adjourn" describes claims that defer claim resolution.
    *
    *     "propose" describes claims that make any initial statement.
    *
@@ -282,38 +304,44 @@ export interface SearchO_Object_Public {
    *     "nullify" describes claims that question the verifiability of truth.
    *
    *
-   * @generated from protobuf field: string lifecycle = 300;
+   * @generated from protobuf field: string lifecycle = 400;
    */
   lifecycle: string;
   /**
-   * option is the side of the bet taken with this post if kind equals
-   * "comment". If option does then equal "true", the staked reputation agrees
-   * with the given statement. If option does then equal "false", the staked
-   * reputation disagrees with the given statement.
+   * option is the side of the bet that the calling user took as market
+   * participant if this is a post of kind "claim". If the caller did not
+   * participate in this market, then option will be empty, given that the post
+   * kind is "claim". If kind equals "comment", then option is the side of the
+   * bet taken with this post regardless the caller. If option does equal "true"
+   * and the post kind is "comment", then the staked reputation does agree with
+   * the given statement. If option does equal "false" on the other hand, then
+   * the staked reputation disagrees with the given statement.
    *
-   * @generated from protobuf field: string option = 400;
+   * @generated from protobuf field: string option = 500;
    */
   option: string;
   /**
    * stake is the amount of reputation staked. If kind equals "claim", then
-   * stake might be a comma separated string of token values in the format
-   * "agreement,disagreement,stake,share", if applicable.
+   * stake might be a comma separated string of token denominated values in the
+   * format "agreement,disagreement,minimum,initial,user".
    *
-   *     "agreement" will then represent all reputation staked in agreement with
-   *     the given statement.
+   *     "agreement" will represent all reputation staked in agreement with the
+   *     given statement.
    *
-   *     "disagreement" will then represent all reputation staked in
-   *     disagreement with the given statement.
+   *     "disagreement" will represent all reputation staked in disagreement
+   *     with the given statement.
    *
-   *     "stake" will then represent the initial amount of staked reputation, if
-   *     the calling user participated in the given market.
+   *     "minimum" will represent the minimum amount of reputation that must be
+   *     staked when participating in this market.
    *
-   *     "share" will then represent the intermediate or final value of staked
-   *     reputation belonging to the calling user, if said user did in fact
-   *     participate in teh given market.
+   *     "initial" will represent the initial amount of reputation that the
+   *     proposing user staked when creating this market.
+   *
+   *     "user" will represent the amount of staked reputation belonging to the
+   *     calling user, if said user did in fact participate in the given market.
    *
    *
-   * @generated from protobuf field: string stake = 500;
+   * @generated from protobuf field: string stake = 600;
    */
   stake: string;
   /**
@@ -323,7 +351,7 @@ export interface SearchO_Object_Public {
    * will reference the prior claim of kind "resolve" within their common tree,
    * because any dispute does always try to challange any prior resolution.
    *
-   * @generated from protobuf field: string parent = 600;
+   * @generated from protobuf field: string parent = 700;
    */
   parent: string;
   /**
@@ -332,13 +360,13 @@ export interface SearchO_Object_Public {
    * provided in markdown format. This text might be as long as a common blog
    * post. This text might contain external links.
    *
-   * @generated from protobuf field: string text = 700;
+   * @generated from protobuf field: string text = 800;
    */
   text: string;
   /**
    * token is the token in which the staked reputation is denominated.
    *
-   * @generated from protobuf field: string token = 800;
+   * @generated from protobuf field: string token = 900;
    */
   token: string;
 }

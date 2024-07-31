@@ -16,6 +16,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                 "public": {
  *                     "expiry": "1689001255",
  *                     "kind": "claim",
+ *                     "labels": "economy,inflation",
  *                     "lifecycle": "propose",
  *                     "option": "true",
  *                     "stake": "1.5",
@@ -80,8 +81,17 @@ export interface CreateI_Object_Public {
    */
   kind: string;
   /**
+   * labels is a comma separated list of category labels that this claim is
+   * related to.
+   *
+   * @generated from protobuf field: string labels = 300;
+   */
+  labels: string;
+  /**
    * lifecycle describes the evolutionary stage of a claim within its own tree.
    * Only posts of kind "claim" will have a lifecycle set.
+   *
+   *     "adjourn" describes claims that defer claim resolution.
    *
    *     "propose" describes claims that make any initial statement.
    *
@@ -92,7 +102,7 @@ export interface CreateI_Object_Public {
    *     "nullify" describes claims that question the verifiability of truth.
    *
    *
-   * @generated from protobuf field: string lifecycle = 300;
+   * @generated from protobuf field: string lifecycle = 400;
    */
   lifecycle: string;
   /**
@@ -101,7 +111,7 @@ export interface CreateI_Object_Public {
    * statement. If option is "false", then the staked reputation disagrees with
    * the given statement.
    *
-   * @generated from protobuf field: string option = 400;
+   * @generated from protobuf field: string option = 500;
    */
   option: string;
   /**
@@ -111,13 +121,13 @@ export interface CreateI_Object_Public {
    * will reference the prior claim of kind "resolve" within their common tree,
    * because any dispute does always try to challange any prior resolution.
    *
-   * @generated from protobuf field: string parent = 500;
+   * @generated from protobuf field: string parent = 600;
    */
   parent: string;
   /**
    * stake is the amount of reputation staked.
    *
-   * @generated from protobuf field: string stake = 600;
+   * @generated from protobuf field: string stake = 700;
    */
   stake: string;
   /**
@@ -126,13 +136,13 @@ export interface CreateI_Object_Public {
    * provided in markdown format. This text might as be long as a common blog
    * post. This text might contain external links.
    *
-   * @generated from protobuf field: string text = 700;
+   * @generated from protobuf field: string text = 800;
    */
   text: string;
   /**
    * token is the token in which the staked reputation is denominated.
    *
-   * @generated from protobuf field: string token = 800;
+   * @generated from protobuf field: string token = 900;
    */
   token: string;
 }
