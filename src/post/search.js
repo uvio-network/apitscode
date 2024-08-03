@@ -667,11 +667,10 @@ class SearchO_Object_Public$Type extends MessageType {
             { no: 200, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 300, name: "labels", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 400, name: "lifecycle", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 500, name: "option", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 600, name: "stake", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 700, name: "parent", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 800, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 900, name: "token", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 500, name: "parent", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 600, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 700, name: "token", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 800, name: "votes", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
@@ -680,11 +679,10 @@ class SearchO_Object_Public$Type extends MessageType {
         message.kind = "";
         message.labels = "";
         message.lifecycle = "";
-        message.option = "";
-        message.stake = "";
         message.parent = "";
         message.text = "";
         message.token = "";
+        message.votes = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
@@ -706,20 +704,17 @@ class SearchO_Object_Public$Type extends MessageType {
                 case /* string lifecycle */ 400:
                     message.lifecycle = reader.string();
                     break;
-                case /* string option */ 500:
-                    message.option = reader.string();
-                    break;
-                case /* string stake */ 600:
-                    message.stake = reader.string();
-                    break;
-                case /* string parent */ 700:
+                case /* string parent */ 500:
                     message.parent = reader.string();
                     break;
-                case /* string text */ 800:
+                case /* string text */ 600:
                     message.text = reader.string();
                     break;
-                case /* string token */ 900:
+                case /* string token */ 700:
                     message.token = reader.string();
+                    break;
+                case /* string votes */ 800:
+                    message.votes = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -745,21 +740,18 @@ class SearchO_Object_Public$Type extends MessageType {
         /* string lifecycle = 400; */
         if (message.lifecycle !== "")
             writer.tag(400, WireType.LengthDelimited).string(message.lifecycle);
-        /* string option = 500; */
-        if (message.option !== "")
-            writer.tag(500, WireType.LengthDelimited).string(message.option);
-        /* string stake = 600; */
-        if (message.stake !== "")
-            writer.tag(600, WireType.LengthDelimited).string(message.stake);
-        /* string parent = 700; */
+        /* string parent = 500; */
         if (message.parent !== "")
-            writer.tag(700, WireType.LengthDelimited).string(message.parent);
-        /* string text = 800; */
+            writer.tag(500, WireType.LengthDelimited).string(message.parent);
+        /* string text = 600; */
         if (message.text !== "")
-            writer.tag(800, WireType.LengthDelimited).string(message.text);
-        /* string token = 900; */
+            writer.tag(600, WireType.LengthDelimited).string(message.text);
+        /* string token = 700; */
         if (message.token !== "")
-            writer.tag(900, WireType.LengthDelimited).string(message.token);
+            writer.tag(700, WireType.LengthDelimited).string(message.token);
+        /* string votes = 800; */
+        if (message.votes !== "")
+            writer.tag(800, WireType.LengthDelimited).string(message.votes);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

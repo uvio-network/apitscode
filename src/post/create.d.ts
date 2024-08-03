@@ -18,8 +18,6 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                     "kind": "claim",
  *                     "labels": "economy,inflation",
  *                     "lifecycle": "propose",
- *                     "option": "true",
- *                     "stake": "1.5",
  *                     "text": "foo bar lorem ipsum",
  *                     "token": "WETH"
  *                 }
@@ -106,43 +104,28 @@ export interface CreateI_Object_Public {
    */
   lifecycle: string;
   /**
-   * option is the side of the bet taken with this post, e.g. "true" or "false".
-   * If option is "true", then the staked reputation agrees with the given
-   * statement. If option is "false", then the staked reputation disagrees with
-   * the given statement.
-   *
-   * @generated from protobuf field: string option = 500;
-   */
-  option: string;
-  /**
    * parent is the post ID of any claim that references another claim within its
    * own tree. The first claim within a tree does not have a parent. If a post
    * is for instance of kind "claim" and has lifecycle "dispute", then parent
    * will reference the prior claim of kind "resolve" within their common tree,
    * because any dispute does always try to challange any prior resolution.
    *
-   * @generated from protobuf field: string parent = 600;
+   * @generated from protobuf field: string parent = 500;
    */
   parent: string;
-  /**
-   * stake is the amount of reputation staked.
-   *
-   * @generated from protobuf field: string stake = 700;
-   */
-  stake: string;
   /**
    * text is the human readable description the user provides in order to make a
    * statement, whether the post kind is "claim" or "comment". This text may be
    * provided in markdown format. This text might as be long as a common blog
    * post. This text might contain external links.
    *
-   * @generated from protobuf field: string text = 800;
+   * @generated from protobuf field: string text = 600;
    */
   text: string;
   /**
    * token is the token in which the staked reputation is denominated.
    *
-   * @generated from protobuf field: string token = 900;
+   * @generated from protobuf field: string token = 700;
    */
   token: string;
 }
