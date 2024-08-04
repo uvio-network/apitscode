@@ -97,7 +97,9 @@ export interface SearchI_Object_Intern {
   /**
    * owner is the ID of the user having created the votes being searched. If
    * searching for votes created by a particular owner, the search query object
-   * may also define public.kind.
+   * may also define public.claim in order to search for votes a user has cast
+   * on a specific claim. Note that owner may be set to "self" in order to set
+   * the internal user ID by reference of the caller's access token.
    *
    * @generated from protobuf field: string owner = 200;
    */
@@ -108,22 +110,15 @@ export interface SearchI_Object_Intern {
  */
 export interface SearchI_Object_Public {
   /**
-   * kind is the type of vote, e.g. "stake" or "truth" on which a vote is cast.
-   * Note that kind must be compliant with the lifecycle of the referenced
-   * claim.
+   * claim is the ID of the claim that votes can be searched for. In other
+   * words, providing a claim ID allows to search for all votes cast on the
+   * specified claim. This search query can be further restricted by setting
+   * intern.owner, which will then only return the votes that have been cast on
+   * the given claim by that specific user.
    *
-   *     "stake" defines votes for users expressing their own opinions. A vote
-   *     may have set kind "stake" to express opinions on claims of either kind
-   *     "adjourn", "dispute", "nullify" or "propose".
-   *
-   *     "truth" defines votes for users verifying real world events. A vote may
-   *     have set kind "stake" to verify real events on claims of kind
-   *     "resolve".
-   *
-   *
-   * @generated from protobuf field: string kind = 100;
+   * @generated from protobuf field: string claim = 100;
    */
-  kind: string;
+  claim: string;
 }
 /**
  * @generated from protobuf message vote.SearchI_Object_Symbol

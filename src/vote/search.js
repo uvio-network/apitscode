@@ -287,12 +287,12 @@ export const SearchI_Object_Intern = new SearchI_Object_Intern$Type();
 class SearchI_Object_Public$Type extends MessageType {
     constructor() {
         super("vote.SearchI_Object_Public", [
-            { no: 100, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "claim", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
-        message.kind = "";
+        message.claim = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
@@ -302,8 +302,8 @@ class SearchI_Object_Public$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string kind */ 100:
-                    message.kind = reader.string();
+                case /* string claim */ 100:
+                    message.claim = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -317,9 +317,9 @@ class SearchI_Object_Public$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string kind = 100; */
-        if (message.kind !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.kind);
+        /* string claim = 100; */
+        if (message.claim !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.claim);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
