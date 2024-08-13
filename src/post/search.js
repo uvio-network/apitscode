@@ -663,22 +663,26 @@ export const SearchO_Object_Intern = new SearchO_Object_Intern$Type();
 class SearchO_Object_Public$Type extends MessageType {
     constructor() {
         super("post.SearchO_Object_Public", [
-            { no: 100, name: "expiry", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "labels", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "lifecycle", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 500, name: "parent", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 600, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 700, name: "token", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 800, name: "votes", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "chain", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "expiry", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 400, name: "labels", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 500, name: "lifecycle", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 600, name: "meta", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 700, name: "parent", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 800, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 900, name: "token", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 1000, name: "votes", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
+        message.chain = "";
         message.expiry = "";
         message.kind = "";
         message.labels = "";
         message.lifecycle = "";
+        message.meta = "";
         message.parent = "";
         message.text = "";
         message.token = "";
@@ -692,28 +696,34 @@ class SearchO_Object_Public$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string expiry */ 100:
+                case /* string chain */ 100:
+                    message.chain = reader.string();
+                    break;
+                case /* string expiry */ 200:
                     message.expiry = reader.string();
                     break;
-                case /* string kind */ 200:
+                case /* string kind */ 300:
                     message.kind = reader.string();
                     break;
-                case /* string labels */ 300:
+                case /* string labels */ 400:
                     message.labels = reader.string();
                     break;
-                case /* string lifecycle */ 400:
+                case /* string lifecycle */ 500:
                     message.lifecycle = reader.string();
                     break;
-                case /* string parent */ 500:
+                case /* string meta */ 600:
+                    message.meta = reader.string();
+                    break;
+                case /* string parent */ 700:
                     message.parent = reader.string();
                     break;
-                case /* string text */ 600:
+                case /* string text */ 800:
                     message.text = reader.string();
                     break;
-                case /* string token */ 700:
+                case /* string token */ 900:
                     message.token = reader.string();
                     break;
-                case /* string votes */ 800:
+                case /* string votes */ 1000:
                     message.votes = reader.string();
                     break;
                 default:
@@ -728,30 +738,36 @@ class SearchO_Object_Public$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string expiry = 100; */
+        /* string chain = 100; */
+        if (message.chain !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.chain);
+        /* string expiry = 200; */
         if (message.expiry !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.expiry);
-        /* string kind = 200; */
+            writer.tag(200, WireType.LengthDelimited).string(message.expiry);
+        /* string kind = 300; */
         if (message.kind !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.kind);
-        /* string labels = 300; */
+            writer.tag(300, WireType.LengthDelimited).string(message.kind);
+        /* string labels = 400; */
         if (message.labels !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.labels);
-        /* string lifecycle = 400; */
+            writer.tag(400, WireType.LengthDelimited).string(message.labels);
+        /* string lifecycle = 500; */
         if (message.lifecycle !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.lifecycle);
-        /* string parent = 500; */
+            writer.tag(500, WireType.LengthDelimited).string(message.lifecycle);
+        /* string meta = 600; */
+        if (message.meta !== "")
+            writer.tag(600, WireType.LengthDelimited).string(message.meta);
+        /* string parent = 700; */
         if (message.parent !== "")
-            writer.tag(500, WireType.LengthDelimited).string(message.parent);
-        /* string text = 600; */
+            writer.tag(700, WireType.LengthDelimited).string(message.parent);
+        /* string text = 800; */
         if (message.text !== "")
-            writer.tag(600, WireType.LengthDelimited).string(message.text);
-        /* string token = 700; */
+            writer.tag(800, WireType.LengthDelimited).string(message.text);
+        /* string token = 900; */
         if (message.token !== "")
-            writer.tag(700, WireType.LengthDelimited).string(message.token);
-        /* string votes = 800; */
+            writer.tag(900, WireType.LengthDelimited).string(message.token);
+        /* string votes = 1000; */
         if (message.votes !== "")
-            writer.tag(800, WireType.LengthDelimited).string(message.votes);
+            writer.tag(1000, WireType.LengthDelimited).string(message.votes);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

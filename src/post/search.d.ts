@@ -165,10 +165,12 @@ export interface SearchI_Object_Symbol {
  *                     "tree": "487465725612222"
  *                 },
  *                 "public": {
+ *                     "chain": "421614",
  *                     "expiry": "1689001255",
  *                     "kind": "claim",
  *                     "labels": "economy,inflation",
  *                     "lifecycle": "propose",
+ *                     "meta": "9,0",
  *                     "text": "foo bar lorem ipsum",
  *                     "token": "WETH",
  *                     "votes": "10,2,1,4.843"
@@ -268,25 +270,32 @@ export interface SearchO_Object_Intern {
  */
 export interface SearchO_Object_Public {
   /**
+   * chain is the chain ID on which a claim got proposed. This field must be
+   * empty for posts of kind "comment".
+   *
+   * @generated from protobuf field: string chain = 100;
+   */
+  chain: string;
+  /**
    * expiry is the unix timestamp in seconds at which the post expires. Every
    * expiry marks the point in time at which a claim may transition into a new
    * lifecycle phase.
    *
-   * @generated from protobuf field: string expiry = 100;
+   * @generated from protobuf field: string expiry = 200;
    */
   expiry: string;
   /**
    * kind is the type of post, e.g. "claim" or "comment" on which reputation is
    * staked.
    *
-   * @generated from protobuf field: string kind = 200;
+   * @generated from protobuf field: string kind = 300;
    */
   kind: string;
   /**
    * labels is a comma separated list of category labels that this claim is
    * related to.
    *
-   * @generated from protobuf field: string labels = 300;
+   * @generated from protobuf field: string labels = 400;
    */
   labels: string;
   /**
@@ -304,9 +313,16 @@ export interface SearchO_Object_Public {
    *     "nullify" describes claims that question the verifiability of truth.
    *
    *
-   * @generated from protobuf field: string lifecycle = 400;
+   * @generated from protobuf field: string lifecycle = 500;
    */
   lifecycle: string;
+  /**
+   * meta may contain onchain specific meta data like tree ID and claim ID as
+   * tracked by a smart contract. meta should be empty for comments.
+   *
+   * @generated from protobuf field: string meta = 600;
+   */
+  meta: string;
   /**
    * parent is the post ID of any claim that references another claim within its
    * own tree. The first claim within a tree does not have a parent. If a post
@@ -314,7 +330,7 @@ export interface SearchO_Object_Public {
    * will reference the prior claim of kind "resolve" within their common tree,
    * because any dispute does always try to challange any prior resolution.
    *
-   * @generated from protobuf field: string parent = 500;
+   * @generated from protobuf field: string parent = 700;
    */
   parent: string;
   /**
@@ -323,13 +339,13 @@ export interface SearchO_Object_Public {
    * provided in markdown format. This text might be as long as a common blog
    * post. This text might contain external links.
    *
-   * @generated from protobuf field: string text = 600;
+   * @generated from protobuf field: string text = 800;
    */
   text: string;
   /**
    * token is the token in which the staked reputation is denominated.
    *
-   * @generated from protobuf field: string token = 700;
+   * @generated from protobuf field: string token = 900;
    */
   token: string;
   /**
@@ -385,7 +401,7 @@ export interface SearchO_Object_Public {
    *     "resolve".
    *
    *
-   * @generated from protobuf field: string votes = 800;
+   * @generated from protobuf field: string votes = 1000;
    */
   votes: string;
 }
