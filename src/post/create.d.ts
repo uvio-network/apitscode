@@ -16,9 +16,9 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                 "public": {
  *                     "chain": "421614",
  *                     "expiry": "1689001255",
+ *                     "hash": "0x1234",
  *                     "kind": "claim",
  *                     "labels": "economy,inflation",
- *                     "lifecycle": "propose",
  *                     "meta": "9,0",
  *                     "text": "foo bar lorem ipsum",
  *                     "token": "WETH"
@@ -81,24 +81,38 @@ export interface CreateI_Object_Public {
    */
   expiry: string;
   /**
+   * hash is the onchain transaction hash if post kind is "claim". Hash must be
+   * empty for comments. Setting hash implies that the claim got confirmed
+   * onchain, and with it the lifecycle phase "propose" will be inferred
+   * automatically.
+   *
+   * @generated from protobuf field: string hash = 300;
+   */
+  hash: string;
+  /**
    * kind is the type of post, e.g. "claim" or "comment" on which reputation is
    * staked.
    *
-   * @generated from protobuf field: string kind = 300;
+   * @generated from protobuf field: string kind = 400;
    */
   kind: string;
   /**
    * labels is a comma separated list of category labels that this claim is
    * related to.
    *
-   * @generated from protobuf field: string labels = 400;
+   * @generated from protobuf field: string labels = 500;
    */
   labels: string;
   /**
    * lifecycle describes the evolutionary stage of a claim within its own tree.
-   * Only posts of kind "claim" will have a lifecycle set.
+   * Only posts of kind "claim" will have a lifecycle phase set. All claims
+   * start with the lifecycle phase "pending". Those pending claims were posted
+   * offchain, but have not yet been confirmed onchain. Once claims have been
+   * confirmed onchain the claim's lifecycle phase will be set to "propose".
    *
    *     "adjourn" describes claims that defer claim resolution.
+   *
+   *     "pending" describes claims that are not confirmed onchain.
    *
    *     "propose" describes claims that make any initial statement.
    *
@@ -109,14 +123,14 @@ export interface CreateI_Object_Public {
    *     "nullify" describes claims that question the verifiability of truth.
    *
    *
-   * @generated from protobuf field: string lifecycle = 500;
+   * @generated from protobuf field: string lifecycle = 600;
    */
   lifecycle: string;
   /**
    * meta may contain onchain specific meta data like tree ID and claim ID as
    * tracked by a smart contract. meta should be empty for comments.
    *
-   * @generated from protobuf field: string meta = 600;
+   * @generated from protobuf field: string meta = 700;
    */
   meta: string;
   /**
@@ -126,7 +140,7 @@ export interface CreateI_Object_Public {
    * will reference the prior claim of kind "resolve" within their common tree,
    * because any dispute does always try to challange any prior resolution.
    *
-   * @generated from protobuf field: string parent = 700;
+   * @generated from protobuf field: string parent = 800;
    */
   parent: string;
   /**
@@ -135,13 +149,13 @@ export interface CreateI_Object_Public {
    * provided in markdown format. This text might as be long as a common blog
    * post. This text might contain external links.
    *
-   * @generated from protobuf field: string text = 800;
+   * @generated from protobuf field: string text = 900;
    */
   text: string;
   /**
    * token is the token in which the staked reputation is denominated.
    *
-   * @generated from protobuf field: string token = 900;
+   * @generated from protobuf field: string token = 1000;
    */
   token: string;
 }

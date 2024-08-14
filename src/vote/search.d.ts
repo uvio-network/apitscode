@@ -136,8 +136,11 @@ export interface SearchI_Object_Symbol {}
  *                     "owner": "551265"
  *                 },
  *                 "public": {
+ *                     "chain": "421614",
  *                     "claim": "778237",
+ *                     "hash": "0x1234",
  *                     "kind": "stake",
+ *                     "lifecycle": "onchain",
  *                     "option": "true",
  *                     "value": "1.5"
  *                 }
@@ -211,13 +214,27 @@ export interface SearchO_Object_Intern {
  */
 export interface SearchO_Object_Public {
   /**
+   * chain is the chain ID on which a vote got expressed.
+   *
+   * @generated from protobuf field: string chain = 100;
+   */
+  chain: string;
+  /**
    * claim is the ID of the referenced claim being voted on. Note that the
    * lifecycle of the referenced claim must be compliant with the vote kind
    * provided.
    *
-   * @generated from protobuf field: string claim = 100;
+   * @generated from protobuf field: string claim = 200;
    */
   claim: string;
+  /**
+   * hash is the onchain transaction hash for this vote. Setting hash implies
+   * that the vote got confirmed onchain, and with it the lifecycle phase
+   * "onchain" will be inferred automatically.
+   *
+   * @generated from protobuf field: string hash = 300;
+   */
+  hash: string;
   /**
    * kind is the type of vote, e.g. "stake" or "truth" on which a vote is cast.
    * Note that kind must be compliant with the lifecycle of the referenced
@@ -232,22 +249,43 @@ export interface SearchO_Object_Public {
    *     "resolve".
    *
    *
-   * @generated from protobuf field: string kind = 200;
+   * @generated from protobuf field: string kind = 400;
    */
   kind: string;
+  /**
+   * lifecycle describes the evolutionary stage of a vote. All votes start with
+   * the lifecycle phase "pending". Those pending votes were posted offchain,
+   * but have not yet been confirmed onchain. Once votes have been confirmed
+   * onchain the vote's lifecycle phase will be set to "onchain".
+   *
+   *     "onchain" describes votes that have been confirmed onchain.
+   *
+   *     "pending" describes votes that are not confirmed onchain.
+   *
+   *
+   * @generated from protobuf field: string lifecycle = 500;
+   */
+  lifecycle: string;
+  /**
+   * meta may contain any meta data about this vote. It is an optional field
+   * that may or may not be used.
+   *
+   * @generated from protobuf field: string meta = 600;
+   */
+  meta: string;
   /**
    * option is the side of the vote being cast, e.g. "true" or "false". If
    * option is "true", then the vote is in agreement. If option is "false", then
    * the vote is in disagreement.
    *
-   * @generated from protobuf field: string option = 300;
+   * @generated from protobuf field: string option = 700;
    */
   option: string;
   /**
    * value is the weight of the vote being cast. If kind is "stake", then value
    * might be any positive number. If kind is "truth", then value must be 1.
    *
-   * @generated from protobuf field: string value = 400;
+   * @generated from protobuf field: string value = 800;
    */
   value: string;
 }

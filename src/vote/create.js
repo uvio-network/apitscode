@@ -166,16 +166,24 @@ export const CreateI_Object_Intern = new CreateI_Object_Intern$Type();
 class CreateI_Object_Public$Type extends MessageType {
     constructor() {
         super("vote.CreateI_Object_Public", [
-            { no: 100, name: "claim", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "option", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "value", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "chain", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "claim", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "hash", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 400, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 500, name: "lifecycle", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 600, name: "meta", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 700, name: "option", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 800, name: "value", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
+        message.chain = "";
         message.claim = "";
+        message.hash = "";
         message.kind = "";
+        message.lifecycle = "";
+        message.meta = "";
         message.option = "";
         message.value = "";
         if (value !== undefined)
@@ -187,16 +195,28 @@ class CreateI_Object_Public$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string claim */ 100:
+                case /* string chain */ 100:
+                    message.chain = reader.string();
+                    break;
+                case /* string claim */ 200:
                     message.claim = reader.string();
                     break;
-                case /* string kind */ 200:
+                case /* string hash */ 300:
+                    message.hash = reader.string();
+                    break;
+                case /* string kind */ 400:
                     message.kind = reader.string();
                     break;
-                case /* string option */ 300:
+                case /* string lifecycle */ 500:
+                    message.lifecycle = reader.string();
+                    break;
+                case /* string meta */ 600:
+                    message.meta = reader.string();
+                    break;
+                case /* string option */ 700:
                     message.option = reader.string();
                     break;
-                case /* string value */ 400:
+                case /* string value */ 800:
                     message.value = reader.string();
                     break;
                 default:
@@ -211,18 +231,30 @@ class CreateI_Object_Public$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string claim = 100; */
+        /* string chain = 100; */
+        if (message.chain !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.chain);
+        /* string claim = 200; */
         if (message.claim !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.claim);
-        /* string kind = 200; */
+            writer.tag(200, WireType.LengthDelimited).string(message.claim);
+        /* string hash = 300; */
+        if (message.hash !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.hash);
+        /* string kind = 400; */
         if (message.kind !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.kind);
-        /* string option = 300; */
+            writer.tag(400, WireType.LengthDelimited).string(message.kind);
+        /* string lifecycle = 500; */
+        if (message.lifecycle !== "")
+            writer.tag(500, WireType.LengthDelimited).string(message.lifecycle);
+        /* string meta = 600; */
+        if (message.meta !== "")
+            writer.tag(600, WireType.LengthDelimited).string(message.meta);
+        /* string option = 700; */
         if (message.option !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.option);
-        /* string value = 400; */
+            writer.tag(700, WireType.LengthDelimited).string(message.option);
+        /* string value = 800; */
         if (message.value !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.value);
+            writer.tag(800, WireType.LengthDelimited).string(message.value);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

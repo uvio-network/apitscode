@@ -145,6 +145,16 @@ export interface SearchI_Object_Symbol {
    * @generated from protobuf field: string time = 200;
    */
   time: string;
+  /**
+   * vote is the ID of the user having voted on the claims to search. vote set
+   * to "self" returns the claims voted on by the current user sending the
+   * request, based on the given authorization parameters. Given an OAuth access
+   * token, its encoded subject claim may refer to the internally persisted user
+   * object.
+   *
+   * @generated from protobuf field: string vote = 300;
+   */
+  vote: string;
 }
 /**
  * SearchO is the output for searching posts.
@@ -167,6 +177,7 @@ export interface SearchI_Object_Symbol {
  *                 "public": {
  *                     "chain": "421614",
  *                     "expiry": "1689001255",
+ *                     "hash": "0x1234",
  *                     "kind": "claim",
  *                     "labels": "economy,inflation",
  *                     "lifecycle": "propose",
@@ -285,17 +296,26 @@ export interface SearchO_Object_Public {
    */
   expiry: string;
   /**
+   * hash is the onchain transaction hash if post kind is "claim". Hash must be
+   * empty for comments. Setting hash implies that the claim got confirmed
+   * onchain, and with it the lifecycle phase "propose" will be inferred
+   * automatically.
+   *
+   * @generated from protobuf field: string hash = 300;
+   */
+  hash: string;
+  /**
    * kind is the type of post, e.g. "claim" or "comment" on which reputation is
    * staked.
    *
-   * @generated from protobuf field: string kind = 300;
+   * @generated from protobuf field: string kind = 400;
    */
   kind: string;
   /**
    * labels is a comma separated list of category labels that this claim is
    * related to.
    *
-   * @generated from protobuf field: string labels = 400;
+   * @generated from protobuf field: string labels = 500;
    */
   labels: string;
   /**
@@ -313,14 +333,14 @@ export interface SearchO_Object_Public {
    *     "nullify" describes claims that question the verifiability of truth.
    *
    *
-   * @generated from protobuf field: string lifecycle = 500;
+   * @generated from protobuf field: string lifecycle = 600;
    */
   lifecycle: string;
   /**
    * meta may contain onchain specific meta data like tree ID and claim ID as
    * tracked by a smart contract. meta should be empty for comments.
    *
-   * @generated from protobuf field: string meta = 600;
+   * @generated from protobuf field: string meta = 700;
    */
   meta: string;
   /**
@@ -330,7 +350,7 @@ export interface SearchO_Object_Public {
    * will reference the prior claim of kind "resolve" within their common tree,
    * because any dispute does always try to challange any prior resolution.
    *
-   * @generated from protobuf field: string parent = 700;
+   * @generated from protobuf field: string parent = 800;
    */
   parent: string;
   /**
@@ -339,13 +359,13 @@ export interface SearchO_Object_Public {
    * provided in markdown format. This text might be as long as a common blog
    * post. This text might contain external links.
    *
-   * @generated from protobuf field: string text = 800;
+   * @generated from protobuf field: string text = 900;
    */
   text: string;
   /**
    * token is the token in which the staked reputation is denominated.
    *
-   * @generated from protobuf field: string token = 900;
+   * @generated from protobuf field: string token = 1000;
    */
   token: string;
   /**
@@ -401,7 +421,7 @@ export interface SearchO_Object_Public {
    *     "resolve".
    *
    *
-   * @generated from protobuf field: string votes = 1000;
+   * @generated from protobuf field: string votes = 1100;
    */
   votes: string;
 }
