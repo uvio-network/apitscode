@@ -16,9 +16,9 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                 "public": {
  *                     "chain": "421614",
  *                     "expiry": "1689001255",
- *                     "hash": "0x1234",
  *                     "kind": "claim",
  *                     "labels": "economy,inflation",
+ *                     "lifecycle": "propose",
  *                     "meta": "9,0",
  *                     "text": "foo bar lorem ipsum",
  *                     "token": "WETH"
@@ -81,10 +81,11 @@ export interface CreateI_Object_Public {
    */
   expiry: string;
   /**
-   * hash is the onchain transaction hash if post kind is "claim". Hash must be
-   * empty for comments. Setting hash implies that the claim got confirmed
-   * onchain, and with it the lifecycle phase "propose" will be inferred
-   * automatically.
+   * hash is the onchain transaction hash if post kind is "claim". hash must be
+   * empty for comments. hash left empty implies an interim lifecycle phase
+   * "pending". Setting hash implies that the given claim got confirmed onchain,
+   * and with it the claim's interim lifecycle phase will not be "pending"
+   * anymore, but instead switch to the provided desired lifecycle phase.
    *
    * @generated from protobuf field: string hash = 300;
    */
@@ -104,23 +105,22 @@ export interface CreateI_Object_Public {
    */
   labels: string;
   /**
-   * lifecycle describes the evolutionary stage of a claim within its own tree.
-   * Only posts of kind "claim" will have a lifecycle phase set. All claims
-   * start with the lifecycle phase "pending". Those pending claims were posted
-   * offchain, but have not yet been confirmed onchain. Once claims have been
-   * confirmed onchain the claim's lifecycle phase will be set to "propose".
+   * lifecycle describes the desired lifecycle phase of a claim within its own
+   * tree. Only posts of kind "claim" will have a lifecycle phase set. All
+   * claims start with the interim lifecycle phase "pending". Those pending
+   * claims were posted offchain, but have not yet been confirmed onchain. Once
+   * claims have been confirmed onchain the claim's desired lifecycle phase will
+   * be set as provided.
    *
    *     "adjourn" describes claims that defer claim resolution.
-   *
-   *     "pending" describes claims that are not confirmed onchain.
-   *
-   *     "propose" describes claims that make any initial statement.
-   *
-   *     "resolve" describes claims that allow to verify the truth.
    *
    *     "dispute" describes claims that challenge any prior resolution.
    *
    *     "nullify" describes claims that question the verifiability of truth.
+   *
+   *     "propose" describes claims that make any initial statement.
+   *
+   *     "resolve" describes claims that allow to verify the truth.
    *
    *
    * @generated from protobuf field: string lifecycle = 600;

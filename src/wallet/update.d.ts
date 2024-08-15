@@ -16,13 +16,9 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                 "intern": {
  *                     "id": "778237"
  *                 },
- *                 "update": [
- *                     {
- *                         "operation": "replace",
- *                         "path": "/description",
- *                         "value": "we use it for that other tang"
- *                     }
- *                 ]
+ *                 "public": {
+ *                     "description": "we use it for that other tang"
+ *                 }
  *             }
  *         ]
  *     }
@@ -60,10 +56,6 @@ export interface UpdateI_Object {
    * @generated from protobuf field: wallet.UpdateI_Object_Symbol symbol = 300;
    */
   symbol?: UpdateI_Object_Symbol;
-  /**
-   * @generated from protobuf field: repeated wallet.UpdateI_Object_Update update = 400;
-   */
-  update: UpdateI_Object_Update[];
 }
 /**
  * @generated from protobuf message wallet.UpdateI_Object_Intern
@@ -79,32 +71,19 @@ export interface UpdateI_Object_Intern {
 /**
  * @generated from protobuf message wallet.UpdateI_Object_Public
  */
-export interface UpdateI_Object_Public {}
+export interface UpdateI_Object_Public {
+  /**
+   * description is some human readable hint to help the user identify this
+   * wallet.
+   *
+   * @generated from protobuf field: string description = 300;
+   */
+  description: string;
+}
 /**
  * @generated from protobuf message wallet.UpdateI_Object_Symbol
  */
 export interface UpdateI_Object_Symbol {}
-/**
- * @generated from protobuf message wallet.UpdateI_Object_Update
- */
-export interface UpdateI_Object_Update {
-  /**
-   * @generated from protobuf field: string from = 100;
-   */
-  from: string;
-  /**
-   * @generated from protobuf field: string operation = 200;
-   */
-  operation: string;
-  /**
-   * @generated from protobuf field: string path = 300;
-   */
-  path: string;
-  /**
-   * @generated from protobuf field: string value = 400;
-   */
-  value: string;
-}
 /**
  * UpdateO is the output for updating wallets.
  *
@@ -277,25 +256,6 @@ declare class UpdateI_Object_Symbol$Type extends MessageType<UpdateI_Object_Symb
  * @generated MessageType for protobuf message wallet.UpdateI_Object_Symbol
  */
 export declare const UpdateI_Object_Symbol: UpdateI_Object_Symbol$Type;
-declare class UpdateI_Object_Update$Type extends MessageType<UpdateI_Object_Update> {
-  constructor();
-  create(value?: PartialMessage<UpdateI_Object_Update>): UpdateI_Object_Update;
-  internalBinaryRead(
-    reader: IBinaryReader,
-    length: number,
-    options: BinaryReadOptions,
-    target?: UpdateI_Object_Update,
-  ): UpdateI_Object_Update;
-  internalBinaryWrite(
-    message: UpdateI_Object_Update,
-    writer: IBinaryWriter,
-    options: BinaryWriteOptions,
-  ): IBinaryWriter;
-}
-/**
- * @generated MessageType for protobuf message wallet.UpdateI_Object_Update
- */
-export declare const UpdateI_Object_Update: UpdateI_Object_Update$Type;
 declare class UpdateO$Type extends MessageType<UpdateO> {
   constructor();
   create(value?: PartialMessage<UpdateO>): UpdateO;

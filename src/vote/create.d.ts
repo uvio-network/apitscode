@@ -16,8 +16,8 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                 "public": {
  *                     "chain": "421614",
  *                     "claim": "778237",
- *                     "hash": "0x1234",
  *                     "kind": "stake",
+ *                     "lifecycle": "onchain",
  *                     "option": "true",
  *                     "value": "1.5"
  *                 }
@@ -78,9 +78,11 @@ export interface CreateI_Object_Public {
    */
   claim: string;
   /**
-   * hash is the onchain transaction hash for this vote. Setting hash implies
-   * that the vote got confirmed onchain, and with it the lifecycle phase
-   * "onchain" will be inferred automatically.
+   * hash is a votes's confirmed onchain transaction hash. hash left empty
+   * implies an interim lifecycle phase "pending". Setting hash implies that the
+   * given vote got confirmed onchain, and with it the vote's interim lifecycle
+   * phase will not be "pending" anymore, but instead switch to the provided
+   * desired lifecycle phase.
    *
    * @generated from protobuf field: string hash = 300;
    */
@@ -104,13 +106,12 @@ export interface CreateI_Object_Public {
   kind: string;
   /**
    * lifecycle describes the evolutionary stage of a vote. All votes start with
-   * the lifecycle phase "pending". Those pending votes were posted offchain,
-   * but have not yet been confirmed onchain. Once votes have been confirmed
-   * onchain the vote's lifecycle phase will be set to "onchain".
+   * the interim lifecycle phase "pending". Those pending votes were posted
+   * offchain, but have not yet been confirmed onchain. Once votes have been
+   * confirmed onchain the vote's desired lifecycle phase will be set as
+   * provided.
    *
    *     "onchain" describes votes that have been confirmed onchain.
-   *
-   *     "pending" describes votes that are not confirmed onchain.
    *
    *
    * @generated from protobuf field: string lifecycle = 500;

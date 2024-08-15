@@ -15,14 +15,10 @@ import { MessageType } from "@protobuf-ts/runtime";
  *             {
  *                 "intern": {
  *                     "id": "551265"
+ *                 },
+ *                 "public": {
+ *                     "name": "xh3"
  *                 }
- *                 "update": [
- *                     {
- *                         "operation": "replace",
- *                         "path": "/name/data",
- *                         "value": "xh3"
- *                     }
- *                 ]
  *             }
  *         ]
  *     }
@@ -60,10 +56,6 @@ export interface UpdateI_Object {
    * @generated from protobuf field: user.UpdateI_Object_Symbol symbol = 300;
    */
   symbol?: UpdateI_Object_Symbol;
-  /**
-   * @generated from protobuf field: repeated user.UpdateI_Object_Update update = 400;
-   */
-  update: UpdateI_Object_Update[];
 }
 /**
  * @generated from protobuf message user.UpdateI_Object_Intern
@@ -79,32 +71,24 @@ export interface UpdateI_Object_Intern {
 /**
  * @generated from protobuf message user.UpdateI_Object_Public
  */
-export interface UpdateI_Object_Public {}
+export interface UpdateI_Object_Public {
+  /**
+   * image is the URL pointing to the user's profile picture.
+   *
+   * @generated from protobuf field: string image = 100;
+   */
+  image: string;
+  /**
+   * name is the user name.
+   *
+   * @generated from protobuf field: string name = 200;
+   */
+  name: string;
+}
 /**
  * @generated from protobuf message user.UpdateI_Object_Symbol
  */
 export interface UpdateI_Object_Symbol {}
-/**
- * @generated from protobuf message user.UpdateI_Object_Update
- */
-export interface UpdateI_Object_Update {
-  /**
-   * @generated from protobuf field: string from = 100;
-   */
-  from: string;
-  /**
-   * @generated from protobuf field: string operation = 200;
-   */
-  operation: string;
-  /**
-   * @generated from protobuf field: string path = 300;
-   */
-  path: string;
-  /**
-   * @generated from protobuf field: string value = 400;
-   */
-  value: string;
-}
 /**
  * UpdateO is the output for updating users.
  *
@@ -277,25 +261,6 @@ declare class UpdateI_Object_Symbol$Type extends MessageType<UpdateI_Object_Symb
  * @generated MessageType for protobuf message user.UpdateI_Object_Symbol
  */
 export declare const UpdateI_Object_Symbol: UpdateI_Object_Symbol$Type;
-declare class UpdateI_Object_Update$Type extends MessageType<UpdateI_Object_Update> {
-  constructor();
-  create(value?: PartialMessage<UpdateI_Object_Update>): UpdateI_Object_Update;
-  internalBinaryRead(
-    reader: IBinaryReader,
-    length: number,
-    options: BinaryReadOptions,
-    target?: UpdateI_Object_Update,
-  ): UpdateI_Object_Update;
-  internalBinaryWrite(
-    message: UpdateI_Object_Update,
-    writer: IBinaryWriter,
-    options: BinaryWriteOptions,
-  ): IBinaryWriter;
-}
-/**
- * @generated MessageType for protobuf message user.UpdateI_Object_Update
- */
-export declare const UpdateI_Object_Update: UpdateI_Object_Update$Type;
 declare class UpdateO$Type extends MessageType<UpdateO> {
   constructor();
   create(value?: PartialMessage<UpdateO>): UpdateO;

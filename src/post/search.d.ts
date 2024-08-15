@@ -296,18 +296,22 @@ export interface SearchO_Object_Public {
    */
   labels: string;
   /**
-   * lifecycle describes the evolutionary stage of a claim within its own tree.
-   * Only posts of kind "claim" will have a lifecycle set.
+   * lifecycle describes the desired lifecycle phase of a claim within its own
+   * tree. Only posts of kind "claim" will have a lifecycle phase set. All
+   * claims start with the interim lifecycle phase "pending". Those pending
+   * claims were posted offchain, but have not yet been confirmed onchain. Once
+   * claims have been confirmed onchain the claim's desired lifecycle phase will
+   * be set as provided.
    *
    *     "adjourn" describes claims that defer claim resolution.
-   *
-   *     "propose" describes claims that make any initial statement.
-   *
-   *     "resolve" describes claims that allow to verify the truth.
    *
    *     "dispute" describes claims that challenge any prior resolution.
    *
    *     "nullify" describes claims that question the verifiability of truth.
+   *
+   *     "propose" describes claims that make any initial statement.
+   *
+   *     "resolve" describes claims that allow to verify the truth.
    *
    *
    * @generated from protobuf field: string lifecycle = 600;

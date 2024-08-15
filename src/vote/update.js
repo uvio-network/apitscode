@@ -90,13 +90,11 @@ class UpdateI_Object$Type extends MessageType {
         super("vote.UpdateI_Object", [
             { no: 100, name: "intern", kind: "message", T: () => UpdateI_Object_Intern },
             { no: 200, name: "public", kind: "message", T: () => UpdateI_Object_Public },
-            { no: 300, name: "symbol", kind: "message", T: () => UpdateI_Object_Symbol },
-            { no: 400, name: "update", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => UpdateI_Object_Update }
+            { no: 300, name: "symbol", kind: "message", T: () => UpdateI_Object_Symbol }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
-        message.update = [];
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
@@ -114,9 +112,6 @@ class UpdateI_Object$Type extends MessageType {
                     break;
                 case /* vote.UpdateI_Object_Symbol symbol */ 300:
                     message.symbol = UpdateI_Object_Symbol.internalBinaryRead(reader, reader.uint32(), options, message.symbol);
-                    break;
-                case /* repeated vote.UpdateI_Object_Update update */ 400:
-                    message.update.push(UpdateI_Object_Update.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -139,9 +134,6 @@ class UpdateI_Object$Type extends MessageType {
         /* vote.UpdateI_Object_Symbol symbol = 300; */
         if (message.symbol)
             UpdateI_Object_Symbol.internalBinaryWrite(message.symbol, writer.tag(300, WireType.LengthDelimited).fork(), options).join();
-        /* repeated vote.UpdateI_Object_Update update = 400; */
-        for (let i = 0; i < message.update.length; i++)
-            UpdateI_Object_Update.internalBinaryWrite(message.update[i], writer.tag(400, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -202,18 +194,40 @@ export const UpdateI_Object_Intern = new UpdateI_Object_Intern$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class UpdateI_Object_Public$Type extends MessageType {
     constructor() {
-        super("vote.UpdateI_Object_Public", []);
+        super("vote.UpdateI_Object_Public", [
+            { no: 100, name: "hash", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
+        message.hash = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
     }
     internalBinaryRead(reader, length, options, target) {
-        return target ?? this.create();
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string hash */ 100:
+                    message.hash = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
     }
     internalBinaryWrite(message, writer, options) {
+        /* string hash = 100; */
+        if (message.hash !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.hash);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -249,77 +263,6 @@ class UpdateI_Object_Symbol$Type extends MessageType {
  * @generated MessageType for protobuf message vote.UpdateI_Object_Symbol
  */
 export const UpdateI_Object_Symbol = new UpdateI_Object_Symbol$Type();
-// @generated message type with reflection information, may provide speed optimized methods
-class UpdateI_Object_Update$Type extends MessageType {
-    constructor() {
-        super("vote.UpdateI_Object_Update", [
-            { no: 100, name: "from", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "operation", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "path", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "value", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
-        ]);
-    }
-    create(value) {
-        const message = globalThis.Object.create((this.messagePrototype));
-        message.from = "";
-        message.operation = "";
-        message.path = "";
-        message.value = "";
-        if (value !== undefined)
-            reflectionMergePartial(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader, length, options, target) {
-        let message = target ?? this.create(), end = reader.pos + length;
-        while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
-            switch (fieldNo) {
-                case /* string from */ 100:
-                    message.from = reader.string();
-                    break;
-                case /* string operation */ 200:
-                    message.operation = reader.string();
-                    break;
-                case /* string path */ 300:
-                    message.path = reader.string();
-                    break;
-                case /* string value */ 400:
-                    message.value = reader.string();
-                    break;
-                default:
-                    let u = options.readUnknownField;
-                    if (u === "throw")
-                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
-                    if (u !== false)
-                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
-            }
-        }
-        return message;
-    }
-    internalBinaryWrite(message, writer, options) {
-        /* string from = 100; */
-        if (message.from !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.from);
-        /* string operation = 200; */
-        if (message.operation !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.operation);
-        /* string path = 300; */
-        if (message.path !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.path);
-        /* string value = 400; */
-        if (message.value !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.value);
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message vote.UpdateI_Object_Update
- */
-export const UpdateI_Object_Update = new UpdateI_Object_Update$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class UpdateO$Type extends MessageType {
     constructor() {
