@@ -438,14 +438,13 @@ export const SearchO_Filter = new SearchO_Filter$Type();
 class SearchO_Object$Type extends MessageType {
     constructor() {
         super("vote.SearchO_Object", [
-            { no: 100, name: "extern", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => SearchO_Object_Extern },
+            { no: 100, name: "extern", kind: "message", T: () => SearchO_Object_Extern },
             { no: 200, name: "intern", kind: "message", T: () => SearchO_Object_Intern },
             { no: 300, name: "public", kind: "message", T: () => SearchO_Object_Public }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
-        message.extern = [];
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
@@ -455,8 +454,8 @@ class SearchO_Object$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* repeated vote.SearchO_Object_Extern extern */ 100:
-                    message.extern.push(SearchO_Object_Extern.internalBinaryRead(reader, reader.uint32(), options));
+                case /* vote.SearchO_Object_Extern extern */ 100:
+                    message.extern = SearchO_Object_Extern.internalBinaryRead(reader, reader.uint32(), options, message.extern);
                     break;
                 case /* vote.SearchO_Object_Intern intern */ 200:
                     message.intern = SearchO_Object_Intern.internalBinaryRead(reader, reader.uint32(), options, message.intern);
@@ -476,9 +475,9 @@ class SearchO_Object$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* repeated vote.SearchO_Object_Extern extern = 100; */
-        for (let i = 0; i < message.extern.length; i++)
-            SearchO_Object_Extern.internalBinaryWrite(message.extern[i], writer.tag(100, WireType.LengthDelimited).fork(), options).join();
+        /* vote.SearchO_Object_Extern extern = 100; */
+        if (message.extern)
+            SearchO_Object_Extern.internalBinaryWrite(message.extern, writer.tag(100, WireType.LengthDelimited).fork(), options).join();
         /* vote.SearchO_Object_Intern intern = 200; */
         if (message.intern)
             SearchO_Object_Intern.internalBinaryWrite(message.intern, writer.tag(200, WireType.LengthDelimited).fork(), options).join();

@@ -170,9 +170,9 @@ export interface SearchO_Filter {}
  */
 export interface SearchO_Object {
   /**
-   * @generated from protobuf field: repeated vote.SearchO_Object_Extern extern = 100;
+   * @generated from protobuf field: vote.SearchO_Object_Extern extern = 100;
    */
-  extern: SearchO_Object_Extern[];
+  extern?: SearchO_Object_Extern;
   /**
    * @generated from protobuf field: vote.SearchO_Object_Intern intern = 200;
    */

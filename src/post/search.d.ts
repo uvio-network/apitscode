@@ -162,12 +162,6 @@ export interface SearchI_Object_Symbol {
  *     {
  *         "object": [
  *             {
- *                 "extern": [
- *                     {
- *                         "kind": "list",
- *                         "user": true
- *                     }
- *                 ],
  *                 "intern": {
  *                     "created": "1689001255",
  *                     "id": "778237",
@@ -212,9 +206,9 @@ export interface SearchO_Filter {}
  */
 export interface SearchO_Object {
   /**
-   * @generated from protobuf field: repeated post.SearchO_Object_Extern extern = 100;
+   * @generated from protobuf field: post.SearchO_Object_Extern extern = 100;
    */
-  extern: SearchO_Object_Extern[];
+  extern?: SearchO_Object_Extern;
   /**
    * @generated from protobuf field: post.SearchO_Object_Intern intern = 200;
    */
@@ -227,24 +221,7 @@ export interface SearchO_Object {
 /**
  * @generated from protobuf message post.SearchO_Object_Extern
  */
-export interface SearchO_Object_Extern {
-  /**
-   * kind is the type of external action being tracked, e.g. "list" for users
-   * adding this post of kind "claim" to one of their own lists.
-   *
-   * @generated from protobuf field: string kind = 100;
-   */
-  kind: string;
-  /**
-   * user expresses whether the calling user did the given external action
-   * themselves. For instance, if kind equals "list" and user equals "true",
-   * then the calling user added this post of kind "claim" to on of their own
-   * lists.
-   *
-   * @generated from protobuf field: bool user = 200;
-   */
-  user: boolean;
-}
+export interface SearchO_Object_Extern {}
 /**
  * @generated from protobuf message post.SearchO_Object_Intern
  */
