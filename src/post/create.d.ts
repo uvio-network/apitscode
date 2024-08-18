@@ -128,7 +128,7 @@ export interface CreateI_Object_Public {
   lifecycle: string;
   /**
    * meta may contain onchain specific meta data like tree ID and claim ID as
-   * tracked by a smart contract. meta should be empty for comments.
+   * tracked by a smart contract.
    *
    * @generated from protobuf field: string meta = 700;
    */

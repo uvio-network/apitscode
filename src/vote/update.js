@@ -195,12 +195,14 @@ export const UpdateI_Object_Intern = new UpdateI_Object_Intern$Type();
 class UpdateI_Object_Public$Type extends MessageType {
     constructor() {
         super("vote.UpdateI_Object_Public", [
-            { no: 100, name: "hash", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "hash", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "meta", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
         message.hash = "";
+        message.meta = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
@@ -212,6 +214,9 @@ class UpdateI_Object_Public$Type extends MessageType {
             switch (fieldNo) {
                 case /* string hash */ 100:
                     message.hash = reader.string();
+                    break;
+                case /* string meta */ 200:
+                    message.meta = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -228,6 +233,9 @@ class UpdateI_Object_Public$Type extends MessageType {
         /* string hash = 100; */
         if (message.hash !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.hash);
+        /* string meta = 200; */
+        if (message.meta !== "")
+            writer.tag(200, WireType.LengthDelimited).string(message.meta);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

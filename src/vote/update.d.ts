@@ -82,6 +82,12 @@ export interface UpdateI_Object_Public {
    * @generated from protobuf field: string hash = 100;
    */
   hash: string;
+  /**
+   * meta is a vote's meta data and can be updated at will.
+   *
+   * @generated from protobuf field: string meta = 200;
+   */
+  meta: string;
 }
 /**
  * @generated from protobuf message vote.UpdateI_Object_Symbol
