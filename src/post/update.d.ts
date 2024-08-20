@@ -83,9 +83,8 @@ export interface UpdateI_Object_Public {
    */
   hash: string;
   /**
-   * meta is a post's meta data and can be updated at will for comments. A claim
-   * meta data may aim to maintain some initially given onchain meta data like
-   * onchain tree IDs, that are not ought to change once provided.
+   * meta may contain onchain specific meta data like tree ID and claim ID as
+   * tracked by a smart contract.
    *
    * @generated from protobuf field: string meta = 200;
    */
