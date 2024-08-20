@@ -126,6 +126,14 @@ export interface SearchI_Object_Public {
    * @generated from protobuf field: string labels = 100;
    */
   labels: string;
+  /**
+   * lifecycle is the lifecycle phase to search specific claims for. For
+   * instance, if lifecycle is set to "dispute", all claims known to be disputes
+   * will be returned.
+   *
+   * @generated from protobuf field: string lifecycle = 200;
+   */
+  lifecycle: string;
 }
 /**
  * @generated from protobuf message post.SearchI_Object_Symbol

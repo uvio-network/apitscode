@@ -295,12 +295,14 @@ export const SearchI_Object_Intern = new SearchI_Object_Intern$Type();
 class SearchI_Object_Public$Type extends MessageType {
     constructor() {
         super("post.SearchI_Object_Public", [
-            { no: 100, name: "labels", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "labels", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "lifecycle", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
         message.labels = "";
+        message.lifecycle = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
@@ -312,6 +314,9 @@ class SearchI_Object_Public$Type extends MessageType {
             switch (fieldNo) {
                 case /* string labels */ 100:
                     message.labels = reader.string();
+                    break;
+                case /* string lifecycle */ 200:
+                    message.lifecycle = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -328,6 +333,9 @@ class SearchI_Object_Public$Type extends MessageType {
         /* string labels = 100; */
         if (message.labels !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.labels);
+        /* string lifecycle = 200; */
+        if (message.lifecycle !== "")
+            writer.tag(200, WireType.LengthDelimited).string(message.lifecycle);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
