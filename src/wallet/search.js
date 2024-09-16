@@ -567,8 +567,7 @@ class SearchO_Object_Public$Type extends MessageType {
             { no: 100, name: "active", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 200, name: "address", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 300, name: "description", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 500, name: "provider", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 400, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
@@ -577,7 +576,6 @@ class SearchO_Object_Public$Type extends MessageType {
         message.address = "";
         message.description = "";
         message.kind = "";
-        message.provider = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
@@ -598,9 +596,6 @@ class SearchO_Object_Public$Type extends MessageType {
                     break;
                 case /* string kind */ 400:
                     message.kind = reader.string();
-                    break;
-                case /* string provider */ 500:
-                    message.provider = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -626,9 +621,6 @@ class SearchO_Object_Public$Type extends MessageType {
         /* string kind = 400; */
         if (message.kind !== "")
             writer.tag(400, WireType.LengthDelimited).string(message.kind);
-        /* string provider = 500; */
-        if (message.provider !== "")
-            writer.tag(500, WireType.LengthDelimited).string(message.provider);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

@@ -118,14 +118,6 @@ export interface SearchI_Object_Symbol {}
  *     {
  *         "object": [
  *             {
- *                 "extern": {
- *                     "staked": [
- *                         {
- *                             "balance": "105.18",
- *                             "token": "UVX"
- *                         }
- *                     ]
- *                 },
  *                 "intern": {
  *                     "created": "1689001255",
  *                     "id": "551265"
@@ -176,29 +168,7 @@ export interface SearchO_Object {
 /**
  * @generated from protobuf message user.SearchO_Object_Extern
  */
-export interface SearchO_Object_Extern {
-  /**
-   * @generated from protobuf field: repeated user.SearchO_Object_Extern_Staked staked = 100;
-   */
-  staked: SearchO_Object_Extern_Staked[];
-}
-/**
- * @generated from protobuf message user.SearchO_Object_Extern_Staked
- */
-export interface SearchO_Object_Extern_Staked {
-  /**
-   * balance is user's staked balance of the specified token.
-   *
-   * @generated from protobuf field: string balance = 100;
-   */
-  balance: string;
-  /**
-   * token is the denomination of the user's staked balance.
-   *
-   * @generated from protobuf field: string token = 200;
-   */
-  token: string;
-}
+export interface SearchO_Object_Extern {}
 /**
  * @generated from protobuf message user.SearchO_Object_Intern
  */
@@ -442,27 +412,6 @@ declare class SearchO_Object_Extern$Type extends MessageType<SearchO_Object_Exte
  * @generated MessageType for protobuf message user.SearchO_Object_Extern
  */
 export declare const SearchO_Object_Extern: SearchO_Object_Extern$Type;
-declare class SearchO_Object_Extern_Staked$Type extends MessageType<SearchO_Object_Extern_Staked> {
-  constructor();
-  create(
-    value?: PartialMessage<SearchO_Object_Extern_Staked>,
-  ): SearchO_Object_Extern_Staked;
-  internalBinaryRead(
-    reader: IBinaryReader,
-    length: number,
-    options: BinaryReadOptions,
-    target?: SearchO_Object_Extern_Staked,
-  ): SearchO_Object_Extern_Staked;
-  internalBinaryWrite(
-    message: SearchO_Object_Extern_Staked,
-    writer: IBinaryWriter,
-    options: BinaryWriteOptions,
-  ): IBinaryWriter;
-}
-/**
- * @generated MessageType for protobuf message user.SearchO_Object_Extern_Staked
- */
-export declare const SearchO_Object_Extern_Staked: SearchO_Object_Extern_Staked$Type;
 declare class SearchO_Object_Intern$Type extends MessageType<SearchO_Object_Intern> {
   constructor();
   create(value?: PartialMessage<SearchO_Object_Intern>): SearchO_Object_Intern;

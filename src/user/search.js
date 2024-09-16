@@ -489,40 +489,18 @@ export const SearchO_Object = new SearchO_Object$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SearchO_Object_Extern$Type extends MessageType {
     constructor() {
-        super("user.SearchO_Object_Extern", [
-            { no: 100, name: "staked", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => SearchO_Object_Extern_Staked }
-        ]);
+        super("user.SearchO_Object_Extern", []);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
-        message.staked = [];
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
     }
     internalBinaryRead(reader, length, options, target) {
-        let message = target ?? this.create(), end = reader.pos + length;
-        while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
-            switch (fieldNo) {
-                case /* repeated user.SearchO_Object_Extern_Staked staked */ 100:
-                    message.staked.push(SearchO_Object_Extern_Staked.internalBinaryRead(reader, reader.uint32(), options));
-                    break;
-                default:
-                    let u = options.readUnknownField;
-                    if (u === "throw")
-                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
-                    if (u !== false)
-                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
-            }
-        }
-        return message;
+        return target ?? this.create();
     }
     internalBinaryWrite(message, writer, options) {
-        /* repeated user.SearchO_Object_Extern_Staked staked = 100; */
-        for (let i = 0; i < message.staked.length; i++)
-            SearchO_Object_Extern_Staked.internalBinaryWrite(message.staked[i], writer.tag(100, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -533,61 +511,6 @@ class SearchO_Object_Extern$Type extends MessageType {
  * @generated MessageType for protobuf message user.SearchO_Object_Extern
  */
 export const SearchO_Object_Extern = new SearchO_Object_Extern$Type();
-// @generated message type with reflection information, may provide speed optimized methods
-class SearchO_Object_Extern_Staked$Type extends MessageType {
-    constructor() {
-        super("user.SearchO_Object_Extern_Staked", [
-            { no: 100, name: "balance", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "token", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
-        ]);
-    }
-    create(value) {
-        const message = globalThis.Object.create((this.messagePrototype));
-        message.balance = "";
-        message.token = "";
-        if (value !== undefined)
-            reflectionMergePartial(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader, length, options, target) {
-        let message = target ?? this.create(), end = reader.pos + length;
-        while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
-            switch (fieldNo) {
-                case /* string balance */ 100:
-                    message.balance = reader.string();
-                    break;
-                case /* string token */ 200:
-                    message.token = reader.string();
-                    break;
-                default:
-                    let u = options.readUnknownField;
-                    if (u === "throw")
-                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
-                    if (u !== false)
-                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
-            }
-        }
-        return message;
-    }
-    internalBinaryWrite(message, writer, options) {
-        /* string balance = 100; */
-        if (message.balance !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.balance);
-        /* string token = 200; */
-        if (message.token !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.token);
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message user.SearchO_Object_Extern_Staked
- */
-export const SearchO_Object_Extern_Staked = new SearchO_Object_Extern_Staked$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SearchO_Object_Intern$Type extends MessageType {
     constructor() {
