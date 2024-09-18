@@ -83,7 +83,7 @@ export interface UpdateI_Object_Public {
    */
   hash: string;
   /**
-   * meta is a vote's meta data and can be updated at will.
+   * meta may contain onchain arbitrary meta data.
    *
    * @generated from protobuf field: string meta = 200;
    */

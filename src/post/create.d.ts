@@ -19,7 +19,6 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                     "kind": "claim",
  *                     "labels": "economy,inflation",
  *                     "lifecycle": "propose",
- *                     "meta": "9,0",
  *                     "text": "foo bar lorem ipsum",
  *                     "token": "WETH"
  *                 }
@@ -127,8 +126,7 @@ export interface CreateI_Object_Public {
    */
   lifecycle: string;
   /**
-   * meta may contain onchain specific meta data like tree ID and claim ID as
-   * tracked by a smart contract.
+   * meta may contain onchain arbitrary meta data.
    *
    * @generated from protobuf field: string meta = 700;
    */

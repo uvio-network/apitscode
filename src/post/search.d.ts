@@ -182,8 +182,7 @@ export interface SearchI_Object_Symbol {
  *                     "hash": "0x1234",
  *                     "kind": "claim",
  *                     "labels": "economy,inflation",
- *                     "lifecycle": "propose",
- *                     "meta": "9,0",
+ *                     "lifecycle": "propose:onchain",
  *                     "text": "foo bar lorem ipsum",
  *                     "token": "WETH",
  *                     "votes": "10,2,1,4.843"
@@ -229,7 +228,21 @@ export interface SearchO_Object {
 /**
  * @generated from protobuf message post.SearchO_Object_Extern
  */
-export interface SearchO_Object_Extern {}
+export interface SearchO_Object_Extern {
+  /**
+   * samples contains wallet addresses and user IDs as selected by the random
+   * truth sampling process, if any. The key here will be wallet addresses, and
+   * the values here will be user IDs. It may happen that user IDs are missing
+   * if users exclusively participated onchain. Samples will only be returned
+   * for claims of lifecycle phase resolve, because only such claims select
+   * stakers randomly in order to verify events in teh real world.
+   *
+   * @generated from protobuf field: map<string, string> samples = 100;
+   */
+  samples: {
+    [key: string]: string;
+  };
+}
 /**
  * @generated from protobuf message post.SearchO_Object_Intern
  */
@@ -305,29 +318,45 @@ export interface SearchO_Object_Public {
   labels: string;
   /**
    * lifecycle describes the desired lifecycle phase of a claim within its own
-   * tree. Only posts of kind "claim" will have a lifecycle phase set. All
-   * claims start with the interim lifecycle phase "pending". Those pending
-   * claims were posted offchain, but have not yet been confirmed onchain. Once
-   * claims have been confirmed onchain the claim's desired lifecycle phase will
-   * be set as provided.
+   * tree, plus its status within the system. This field may look like one of
+   * the examples below.
    *
-   *     "adjourn" describes claims that defer claim resolution.
+   *     propose:pending
    *
-   *     "dispute" describes claims that challenge any prior resolution.
+   *     resolve:onchain
    *
-   *     "nullify" describes claims that question the verifiability of truth.
+   *     dispute:pending
    *
-   *     "propose" describes claims that make any initial statement.
+   *     balance:onchain
    *
-   *     "resolve" describes claims that allow to verify the truth.
+   * Only posts of kind "claim" will have a lifecycle phase set. The full list
+   * of possible lifecycle phases can be seen below.
+   *
+   *     "adjourn" describes claims that defer claim resolution
+   *
+   *     "balance" describes claims that finalized by updating user balances
+   *
+   *     "dispute" describes claims that challenge any prior resolution
+   *
+   *     "nullify" describes claims that question the verifiability of truth
+   *
+   *     "propose" describes claims that make any initial statement
+   *
+   *     "resolve" describes claims that allow to verify the truth
+   *
+   * All claims start with the interim system status "pending". Those pending
+   * claims were posted offchain, but have not yet been confirmed onchain.
+   *
+   *     "pending" describes claims that have only been posted offchain
+   *
+   *     "onchain" describes claims that have been confirmed onchain
    *
    *
    * @generated from protobuf field: string lifecycle = 600;
    */
   lifecycle: string;
   /**
-   * meta may contain onchain specific meta data like tree ID and claim ID as
-   * tracked by a smart contract.
+   * meta may contain onchain arbitrary meta data.
    *
    * @generated from protobuf field: string meta = 700;
    */
@@ -613,6 +642,7 @@ declare class SearchO_Object_Extern$Type extends MessageType<SearchO_Object_Exte
     options: BinaryReadOptions,
     target?: SearchO_Object_Extern,
   ): SearchO_Object_Extern;
+  private binaryReadMap100;
   internalBinaryWrite(
     message: SearchO_Object_Extern,
     writer: IBinaryWriter,

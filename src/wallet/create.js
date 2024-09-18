@@ -166,15 +166,13 @@ export const CreateI_Object_Intern = new CreateI_Object_Intern$Type();
 class CreateI_Object_Public$Type extends MessageType {
     constructor() {
         super("wallet.CreateI_Object_Public", [
-            { no: 100, name: "active", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "address", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "description", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "address", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "description", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
-        message.active = "";
         message.address = "";
         message.description = "";
         message.kind = "";
@@ -187,16 +185,13 @@ class CreateI_Object_Public$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string active */ 100:
-                    message.active = reader.string();
-                    break;
-                case /* string address */ 200:
+                case /* string address */ 100:
                     message.address = reader.string();
                     break;
-                case /* string description */ 300:
+                case /* string description */ 200:
                     message.description = reader.string();
                     break;
-                case /* string kind */ 400:
+                case /* string kind */ 300:
                     message.kind = reader.string();
                     break;
                 default:
@@ -211,18 +206,15 @@ class CreateI_Object_Public$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string active = 100; */
-        if (message.active !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.active);
-        /* string address = 200; */
+        /* string address = 100; */
         if (message.address !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.address);
-        /* string description = 300; */
+            writer.tag(100, WireType.LengthDelimited).string(message.address);
+        /* string description = 200; */
         if (message.description !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.description);
-        /* string kind = 400; */
+            writer.tag(200, WireType.LengthDelimited).string(message.description);
+        /* string kind = 300; */
         if (message.kind !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.kind);
+            writer.tag(300, WireType.LengthDelimited).string(message.kind);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

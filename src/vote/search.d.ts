@@ -253,21 +253,25 @@ export interface SearchO_Object_Public {
    */
   kind: string;
   /**
-   * lifecycle describes the evolutionary stage of a vote. All votes start with
-   * the interim lifecycle phase "pending". Those pending votes were posted
-   * offchain, but have not yet been confirmed onchain. Once votes have been
-   * confirmed onchain the vote's desired lifecycle phase will be set as
-   * provided.
+   * lifecycle describes the vote's status within the system. This field may
+   * look like one of the examples below.
    *
-   *     "onchain" describes votes that have been confirmed onchain.
+   *     pending
+   *     onchain
+   *
+   * All votes start with the interim system status "pending". Those pending
+   * votes were posted offchain, but have not yet been confirmed onchain.
+   *
+   *     "pending" describes votes that have only been posted offchain
+   *
+   *     "onchain" describes votes that have been confirmed onchain
    *
    *
    * @generated from protobuf field: string lifecycle = 500;
    */
   lifecycle: string;
   /**
-   * meta may contain any meta data about this vote. It is an optional field
-   * that may or may not be used.
+   * meta may contain onchain arbitrary meta data.
    *
    * @generated from protobuf field: string meta = 600;
    */

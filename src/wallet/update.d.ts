@@ -76,7 +76,7 @@ export interface UpdateI_Object_Public {
    * description is some human readable hint to help the user identify this
    * wallet.
    *
-   * @generated from protobuf field: string description = 300;
+   * @generated from protobuf field: string description = 100;
    */
   description: string;
 }

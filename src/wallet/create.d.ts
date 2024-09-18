@@ -14,7 +14,6 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         "object": [
  *             {
  *                 "public": {
- *                     "active": "true",
  *                     "address": "0x1234",
  *                     "description": "my favourite, the one with that tang",
  *                     "kind": "injected"
@@ -62,22 +61,16 @@ export interface CreateI_Object_Intern {}
  */
 export interface CreateI_Object_Public {
   /**
-   * active is the flag deciding whether this wallet is actively in use.
-   *
-   * @generated from protobuf field: string active = 100;
-   */
-  active: string;
-  /**
    * address is the hex encoded public address of this wallet.
    *
-   * @generated from protobuf field: string address = 200;
+   * @generated from protobuf field: string address = 100;
    */
   address: string;
   /**
    * description is some human readable hint to help the user identify this
    * wallet.
    *
-   * @generated from protobuf field: string description = 300;
+   * @generated from protobuf field: string description = 200;
    */
   description: string;
   /**
@@ -94,7 +87,7 @@ export interface CreateI_Object_Public {
    *     extensions, and hardware wallets.
    *
    *
-   * @generated from protobuf field: string kind = 400;
+   * @generated from protobuf field: string kind = 300;
    */
   kind: string;
 }

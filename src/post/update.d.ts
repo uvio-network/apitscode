@@ -83,8 +83,7 @@ export interface UpdateI_Object_Public {
    */
   hash: string;
   /**
-   * meta may contain onchain specific meta data like tree ID and claim ID as
-   * tracked by a smart contract.
+   * meta may contain onchain arbitrary meta data.
    *
    * @generated from protobuf field: string meta = 200;
    */

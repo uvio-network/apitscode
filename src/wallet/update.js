@@ -195,7 +195,7 @@ export const UpdateI_Object_Intern = new UpdateI_Object_Intern$Type();
 class UpdateI_Object_Public$Type extends MessageType {
     constructor() {
         super("wallet.UpdateI_Object_Public", [
-            { no: 300, name: "description", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "description", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
@@ -210,7 +210,7 @@ class UpdateI_Object_Public$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string description */ 300:
+                case /* string description */ 100:
                     message.description = reader.string();
                     break;
                 default:
@@ -225,9 +225,9 @@ class UpdateI_Object_Public$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string description = 300; */
+        /* string description = 100; */
         if (message.description !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.description);
+            writer.tag(100, WireType.LengthDelimited).string(message.description);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
