@@ -178,6 +178,7 @@ export interface SearchI_Object_Symbol {
  *                 },
  *                 "public": {
  *                     "chain": "421614",
+ *                     "contract": "0x5678",
  *                     "expiry": "1689001255",
  *                     "hash": "0x1234",
  *                     "kind": "claim",
@@ -286,11 +287,18 @@ export interface SearchO_Object_Public {
    */
   chain: string;
   /**
+   * contract is the address of the token specific smart contract on which this
+   * market is facilitated.
+   *
+   * @generated from protobuf field: string contract = 200;
+   */
+  contract: string;
+  /**
    * expiry is the unix timestamp in seconds at which the post expires. Every
    * expiry marks the point in time at which a claim may transition into a new
    * lifecycle phase.
    *
-   * @generated from protobuf field: string expiry = 200;
+   * @generated from protobuf field: string expiry = 300;
    */
   expiry: string;
   /**
@@ -299,21 +307,21 @@ export interface SearchO_Object_Public {
    * onchain, and with it the lifecycle phase "propose" will be inferred
    * automatically.
    *
-   * @generated from protobuf field: string hash = 300;
+   * @generated from protobuf field: string hash = 400;
    */
   hash: string;
   /**
    * kind is the type of post, e.g. "claim" or "comment" on which reputation is
    * staked.
    *
-   * @generated from protobuf field: string kind = 400;
+   * @generated from protobuf field: string kind = 500;
    */
   kind: string;
   /**
    * labels is a comma separated list of category labels that this claim is
    * related to.
    *
-   * @generated from protobuf field: string labels = 500;
+   * @generated from protobuf field: string labels = 600;
    */
   labels: string;
   /**
@@ -327,14 +335,12 @@ export interface SearchO_Object_Public {
    *
    *     dispute:pending
    *
-   *     balance:onchain
+   *     settled:onchain
    *
    * Only posts of kind "claim" will have a lifecycle phase set. The full list
    * of possible lifecycle phases can be seen below.
    *
    *     "adjourn" describes claims that defer claim resolution
-   *
-   *     "balance" describes claims that finalized by updating user balances
    *
    *     "dispute" describes claims that challenge any prior resolution
    *
@@ -344,6 +350,8 @@ export interface SearchO_Object_Public {
    *
    *     "resolve" describes claims that allow to verify the truth
    *
+   *     "settled" describes claims that finalized by updating user balances
+   *
    * All claims start with the interim system status "pending". Those pending
    * claims were posted offchain, but have not yet been confirmed onchain.
    *
@@ -352,13 +360,13 @@ export interface SearchO_Object_Public {
    *     "onchain" describes claims that have been confirmed onchain
    *
    *
-   * @generated from protobuf field: string lifecycle = 600;
+   * @generated from protobuf field: string lifecycle = 700;
    */
   lifecycle: string;
   /**
    * meta may contain onchain arbitrary meta data.
    *
-   * @generated from protobuf field: string meta = 700;
+   * @generated from protobuf field: string meta = 800;
    */
   meta: string;
   /**
@@ -368,7 +376,7 @@ export interface SearchO_Object_Public {
    * will reference the prior claim of kind "resolve" within their common tree,
    * because any dispute does always try to challange any prior resolution.
    *
-   * @generated from protobuf field: string parent = 800;
+   * @generated from protobuf field: string parent = 900;
    */
   parent: string;
   /**
@@ -377,13 +385,13 @@ export interface SearchO_Object_Public {
    * provided in markdown format. This text might be as long as a common blog
    * post. This text might contain external links.
    *
-   * @generated from protobuf field: string text = 900;
+   * @generated from protobuf field: string text = 1000;
    */
   text: string;
   /**
    * token is the token in which the staked reputation is denominated.
    *
-   * @generated from protobuf field: string token = 1000;
+   * @generated from protobuf field: string token = 1100;
    */
   token: string;
   /**
@@ -439,7 +447,7 @@ export interface SearchO_Object_Public {
    *     "resolve".
    *
    *
-   * @generated from protobuf field: string votes = 1100;
+   * @generated from protobuf field: string votes = 1200;
    */
   votes: string;
 }

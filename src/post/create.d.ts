@@ -15,6 +15,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *             {
  *                 "public": {
  *                     "chain": "421614",
+ *                     "contract": "0x5678",
  *                     "expiry": "1689001255",
  *                     "kind": "claim",
  *                     "labels": "economy,inflation",
@@ -72,11 +73,18 @@ export interface CreateI_Object_Public {
    */
   chain: string;
   /**
+   * contract is the address of the token specific smart contract on which this
+   * market is facilitated.
+   *
+   * @generated from protobuf field: string contract = 200;
+   */
+  contract: string;
+  /**
    * expiry is the unix timestamp in seconds at which the post expires. Every
    * expiry marks the point in time at which a claim may transition into a new
    * lifecycle phase.
    *
-   * @generated from protobuf field: string expiry = 200;
+   * @generated from protobuf field: string expiry = 300;
    */
   expiry: string;
   /**
@@ -86,21 +94,21 @@ export interface CreateI_Object_Public {
    * and with it the claim's interim lifecycle phase will not be "pending"
    * anymore, but instead switch to the provided desired lifecycle phase.
    *
-   * @generated from protobuf field: string hash = 300;
+   * @generated from protobuf field: string hash = 400;
    */
   hash: string;
   /**
    * kind is the type of post, e.g. "claim" or "comment" on which reputation is
    * staked.
    *
-   * @generated from protobuf field: string kind = 400;
+   * @generated from protobuf field: string kind = 500;
    */
   kind: string;
   /**
    * labels is a comma separated list of category labels that this claim is
    * related to.
    *
-   * @generated from protobuf field: string labels = 500;
+   * @generated from protobuf field: string labels = 600;
    */
   labels: string;
   /**
@@ -122,13 +130,13 @@ export interface CreateI_Object_Public {
    *     "resolve" describes claims that allow to verify the truth.
    *
    *
-   * @generated from protobuf field: string lifecycle = 600;
+   * @generated from protobuf field: string lifecycle = 700;
    */
   lifecycle: string;
   /**
    * meta may contain onchain arbitrary meta data.
    *
-   * @generated from protobuf field: string meta = 700;
+   * @generated from protobuf field: string meta = 800;
    */
   meta: string;
   /**
@@ -138,7 +146,7 @@ export interface CreateI_Object_Public {
    * will reference the prior claim of kind "resolve" within their common tree,
    * because any dispute does always try to challange any prior resolution.
    *
-   * @generated from protobuf field: string parent = 800;
+   * @generated from protobuf field: string parent = 900;
    */
   parent: string;
   /**
@@ -147,13 +155,13 @@ export interface CreateI_Object_Public {
    * provided in markdown format. This text might as be long as a common blog
    * post. This text might contain external links.
    *
-   * @generated from protobuf field: string text = 900;
+   * @generated from protobuf field: string text = 1000;
    */
   text: string;
   /**
    * token is the token in which the staked reputation is denominated.
    *
-   * @generated from protobuf field: string token = 1000;
+   * @generated from protobuf field: string token = 1100;
    */
   token: string;
 }
