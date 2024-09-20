@@ -1,6 +1,6 @@
 {
   "name": "@uvio-network/apitscode",
-  "version": "v0.1.10",
+  "version": "v0.1.11",
   "description": "apischema based generated typescript code",
   "type": "module",
   "scripts": {
