@@ -14,7 +14,6 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         "object": [
  *             {
  *                 "public": {
- *                     "chain": "421614",
  *                     "claim": "778237",
  *                     "kind": "stake",
  *                     "lifecycle": "onchain",
@@ -64,17 +63,11 @@ export interface CreateI_Object_Intern {}
  */
 export interface CreateI_Object_Public {
   /**
-   * chain is the chain ID on which a vote got expressed.
-   *
-   * @generated from protobuf field: string chain = 100;
-   */
-  chain: string;
-  /**
    * claim is the ID of the referenced claim being voted on. Note that the
    * lifecycle of the referenced claim must be compliant with the vote kind
    * provided.
    *
-   * @generated from protobuf field: string claim = 200;
+   * @generated from protobuf field: string claim = 100;
    */
   claim: string;
   /**
@@ -84,7 +77,7 @@ export interface CreateI_Object_Public {
    * phase will not be "pending" anymore, but instead switch to the provided
    * desired lifecycle phase.
    *
-   * @generated from protobuf field: string hash = 300;
+   * @generated from protobuf field: string hash = 200;
    */
   hash: string;
   /**
@@ -101,7 +94,7 @@ export interface CreateI_Object_Public {
    *     "resolve".
    *
    *
-   * @generated from protobuf field: string kind = 400;
+   * @generated from protobuf field: string kind = 300;
    */
   kind: string;
   /**
@@ -119,13 +112,13 @@ export interface CreateI_Object_Public {
    *     "onchain" describes votes that have been confirmed onchain
    *
    *
-   * @generated from protobuf field: string lifecycle = 500;
+   * @generated from protobuf field: string lifecycle = 400;
    */
   lifecycle: string;
   /**
    * meta may contain onchain arbitrary meta data.
    *
-   * @generated from protobuf field: string meta = 600;
+   * @generated from protobuf field: string meta = 500;
    */
   meta: string;
   /**
@@ -133,14 +126,14 @@ export interface CreateI_Object_Public {
    * option is "true", then the vote is in agreement. If option is "false", then
    * the vote is in disagreement.
    *
-   * @generated from protobuf field: string option = 700;
+   * @generated from protobuf field: string option = 600;
    */
   option: string;
   /**
    * value is the weight of the vote being cast. If kind is "stake", then value
    * might be any positive number. If kind is "truth", then value must be 1.
    *
-   * @generated from protobuf field: string value = 800;
+   * @generated from protobuf field: string value = 700;
    */
   value: string;
 }

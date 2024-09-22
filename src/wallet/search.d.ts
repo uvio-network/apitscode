@@ -9,7 +9,7 @@ import type { PartialMessage } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 /**
  * SearchI is the input for searching wallets. Note that searching for wallets
- * is restricted to the respective authenticated users. In order words, wallets
+ * is restricted to the respective authenticated users. In other words, wallets
  * are not available to the public, and only the wallet owner can search their
  * own wallets.
  *

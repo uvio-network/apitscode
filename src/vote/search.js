@@ -586,19 +586,17 @@ export const SearchO_Object_Intern = new SearchO_Object_Intern$Type();
 class SearchO_Object_Public$Type extends MessageType {
     constructor() {
         super("vote.SearchO_Object_Public", [
-            { no: 100, name: "chain", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "claim", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "hash", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 500, name: "lifecycle", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 600, name: "meta", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 700, name: "option", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 800, name: "value", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "claim", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "hash", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 400, name: "lifecycle", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 500, name: "meta", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 600, name: "option", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 700, name: "value", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
-        message.chain = "";
         message.claim = "";
         message.hash = "";
         message.kind = "";
@@ -615,28 +613,25 @@ class SearchO_Object_Public$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string chain */ 100:
-                    message.chain = reader.string();
-                    break;
-                case /* string claim */ 200:
+                case /* string claim */ 100:
                     message.claim = reader.string();
                     break;
-                case /* string hash */ 300:
+                case /* string hash */ 200:
                     message.hash = reader.string();
                     break;
-                case /* string kind */ 400:
+                case /* string kind */ 300:
                     message.kind = reader.string();
                     break;
-                case /* string lifecycle */ 500:
+                case /* string lifecycle */ 400:
                     message.lifecycle = reader.string();
                     break;
-                case /* string meta */ 600:
+                case /* string meta */ 500:
                     message.meta = reader.string();
                     break;
-                case /* string option */ 700:
+                case /* string option */ 600:
                     message.option = reader.string();
                     break;
-                case /* string value */ 800:
+                case /* string value */ 700:
                     message.value = reader.string();
                     break;
                 default:
@@ -651,30 +646,27 @@ class SearchO_Object_Public$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string chain = 100; */
-        if (message.chain !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.chain);
-        /* string claim = 200; */
+        /* string claim = 100; */
         if (message.claim !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.claim);
-        /* string hash = 300; */
+            writer.tag(100, WireType.LengthDelimited).string(message.claim);
+        /* string hash = 200; */
         if (message.hash !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.hash);
-        /* string kind = 400; */
+            writer.tag(200, WireType.LengthDelimited).string(message.hash);
+        /* string kind = 300; */
         if (message.kind !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.kind);
-        /* string lifecycle = 500; */
+            writer.tag(300, WireType.LengthDelimited).string(message.kind);
+        /* string lifecycle = 400; */
         if (message.lifecycle !== "")
-            writer.tag(500, WireType.LengthDelimited).string(message.lifecycle);
-        /* string meta = 600; */
+            writer.tag(400, WireType.LengthDelimited).string(message.lifecycle);
+        /* string meta = 500; */
         if (message.meta !== "")
-            writer.tag(600, WireType.LengthDelimited).string(message.meta);
-        /* string option = 700; */
+            writer.tag(500, WireType.LengthDelimited).string(message.meta);
+        /* string option = 600; */
         if (message.option !== "")
-            writer.tag(700, WireType.LengthDelimited).string(message.option);
-        /* string value = 800; */
+            writer.tag(600, WireType.LengthDelimited).string(message.option);
+        /* string value = 700; */
         if (message.value !== "")
-            writer.tag(800, WireType.LengthDelimited).string(message.value);
+            writer.tag(700, WireType.LengthDelimited).string(message.value);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
