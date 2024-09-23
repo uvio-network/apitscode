@@ -119,15 +119,11 @@ export interface CreateI_Object_Public {
    * claims have been confirmed onchain the claim's desired lifecycle phase will
    * be set as provided.
    *
-   *     "adjourn" describes claims that defer claim resolution.
+   *     "dispute" describes claims that challenge any prior resolution
    *
-   *     "dispute" describes claims that challenge any prior resolution.
+   *     "propose" describes claims that make any initial statement
    *
-   *     "nullify" describes claims that question the verifiability of truth.
-   *
-   *     "propose" describes claims that make any initial statement.
-   *
-   *     "resolve" describes claims that allow to verify the truth.
+   *     "resolve" describes claims that allow to verify the truth
    *
    *
    * @generated from protobuf field: string lifecycle = 700;

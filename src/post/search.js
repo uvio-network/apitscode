@@ -695,9 +695,9 @@ class SearchO_Object_Public$Type extends MessageType {
             { no: 700, name: "lifecycle", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 800, name: "meta", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 900, name: "parent", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 1000, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 1100, name: "token", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 1200, name: "votes", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 1000, name: "summary", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 1100, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 1200, name: "token", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
@@ -711,9 +711,9 @@ class SearchO_Object_Public$Type extends MessageType {
         message.lifecycle = "";
         message.meta = "";
         message.parent = "";
+        message.summary = "";
         message.text = "";
         message.token = "";
-        message.votes = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
@@ -750,14 +750,14 @@ class SearchO_Object_Public$Type extends MessageType {
                 case /* string parent */ 900:
                     message.parent = reader.string();
                     break;
-                case /* string text */ 1000:
+                case /* string summary */ 1000:
+                    message.summary = reader.string();
+                    break;
+                case /* string text */ 1100:
                     message.text = reader.string();
                     break;
-                case /* string token */ 1100:
+                case /* string token */ 1200:
                     message.token = reader.string();
-                    break;
-                case /* string votes */ 1200:
-                    message.votes = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -798,15 +798,15 @@ class SearchO_Object_Public$Type extends MessageType {
         /* string parent = 900; */
         if (message.parent !== "")
             writer.tag(900, WireType.LengthDelimited).string(message.parent);
-        /* string text = 1000; */
+        /* string summary = 1000; */
+        if (message.summary !== "")
+            writer.tag(1000, WireType.LengthDelimited).string(message.summary);
+        /* string text = 1100; */
         if (message.text !== "")
-            writer.tag(1000, WireType.LengthDelimited).string(message.text);
-        /* string token = 1100; */
+            writer.tag(1100, WireType.LengthDelimited).string(message.text);
+        /* string token = 1200; */
         if (message.token !== "")
-            writer.tag(1100, WireType.LengthDelimited).string(message.token);
-        /* string votes = 1200; */
-        if (message.votes !== "")
-            writer.tag(1200, WireType.LengthDelimited).string(message.votes);
+            writer.tag(1200, WireType.LengthDelimited).string(message.token);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

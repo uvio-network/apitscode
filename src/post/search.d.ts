@@ -184,9 +184,9 @@ export interface SearchI_Object_Symbol {
  *                     "kind": "claim",
  *                     "labels": "economy,inflation",
  *                     "lifecycle": "propose:onchain",
+ *                     "summary": "10,2,1,4.843",
  *                     "text": "foo bar lorem ipsum",
- *                     "token": "WETH",
- *                     "votes": "10,2,1,4.843"
+ *                     "token": "WETH"
  *                 }
  *             }
  *         ]
@@ -235,7 +235,7 @@ export interface SearchO_Object_Extern {
    * truth sampling process, if any. The key here will be wallet addresses, and
    * the values here will be user IDs. It may happen that user IDs are missing
    * if users exclusively participated onchain. Samples will only be returned
-   * for claims of lifecycle phase resolve, because only such claims select
+   * for claims of lifecycle phase "resolve", because only such claims select
    * stakers randomly in order to verify events in teh real world.
    *
    * @generated from protobuf field: map<string, string> samples = 100;
@@ -268,8 +268,8 @@ export interface SearchO_Object_Intern {
   owner: string;
   /**
    * tree is the internal list ID within which all referenced claims are grouped
-   * together. Using this tree ID it is possible to search for all claims
-   * belonging to the same lifecycle.
+   * together. Using this tree ID, it is possible to search for all claims
+   * belonging to the same original propose.
    *
    * @generated from protobuf field: string tree = 400;
    */
@@ -329,28 +329,24 @@ export interface SearchO_Object_Public {
    * tree, plus its status within the system. This field may look like one of
    * the examples below.
    *
-   *     propose:pending
-   *
-   *     resolve:onchain
-   *
    *     dispute:pending
    *
-   *     settled:onchain
+   *     propose:onchain
+   *
+   *     resolve:pending
+   *
+   *     balance:onchain
    *
    * Only posts of kind "claim" will have a lifecycle phase set. The full list
    * of possible lifecycle phases can be seen below.
    *
-   *     "adjourn" describes claims that defer claim resolution
-   *
    *     "dispute" describes claims that challenge any prior resolution
-   *
-   *     "nullify" describes claims that question the verifiability of truth
    *
    *     "propose" describes claims that make any initial statement
    *
    *     "resolve" describes claims that allow to verify the truth
    *
-   *     "settled" describes claims that finalized by updating user balances
+   *     "balance" describes meta objects for updating user balances
    *
    * All claims start with the interim system status "pending". Those pending
    * claims were posted offchain, but have not yet been confirmed onchain.
@@ -380,54 +376,40 @@ export interface SearchO_Object_Public {
    */
   parent: string;
   /**
-   * text is the human readable description the user provides in order to make a
-   * statement whether kind equals "claim" or "comment". This text may be
-   * provided in markdown format. This text might be as long as a common blog
-   * post. This text might contain external links.
-   *
-   * @generated from protobuf field: string text = 1000;
-   */
-  text: string;
-  /**
-   * token is the token in which the staked reputation is denominated.
-   *
-   * @generated from protobuf field: string token = 1100;
-   */
-  token: string;
-  /**
-   * votes is the summary of votes cast in relation to the referenced claim. If
-   * kind equals "claim" and lifecycle is one of "adjourn", "dispute", "nullify"
-   * or "propose", then votes may be a comma separated string of information
-   * about staked reputation in the following format.
+   * summary is an account of various vote specific metrics in relation to the
+   * referenced claim and its lifecycle phase. If kind equals "claim" and
+   * lifecycle is one of "dispute" or "propose", then summary may be a comma
+   * separated string of information about staked reputation in the following
+   * format.
    *
    *     "agreement,disagreement,minimum,creator"
    *
-   * If kind equals "claim" and lifecycle is "resolve", then votes may be a
+   * If kind equals "claim" and lifecycle is "resolve", then summary may be a
    * comma separated string of information about verified events in the
-   * following format. Any permutation of votes may be possible, e.g. "10,0",
-   * "0,8", "8,4", "9,9" etc.
+   * following format. Any permutation of summary details may be possible, e.g.
+   * "10,0", "0,8", "8,4", "9,9" etc.
    *
    *     "agreement,disagreement"
    *
    * If kind equals "comment" and the lifecycle of the parent claim is one of
-   * "adjourn", "dispute", "nullify" or "propose", then votes may be a comma
-   * separated string of information about the reputation that the commenting
-   * user staked on the parent claim, in the following format. While most
-   * reputation staked may only take one side, any permutation of tokens may be
-   * possible, e.g. "0.5,0", "0,3", "2,0.02".
+   * "dispute" or "propose", then summary may be a comma separated string of
+   * information about the reputation that the commenting user staked on the
+   * parent claim, in the following format. While most reputation staked may
+   * only take one side, any permutation of tokens may be possible, e.g.
+   * "0.5,0", "0,3", "2,0.02".
    *
    *     "agreement,disagreement"
    *
    * If kind equals "comment" and the lifecycle of the parent claim is
-   * "resolve", then votes may be a comma separated string of information about
-   * the events that the commenting user verified on the parent claim, in the
-   * following format. Comments must only have a single voice on either side,
-   * e.g. "1,0", "0,1".
+   * "resolve", then summary may be a comma separated string of information
+   * about the events that the commenting user verified on the parent claim, in
+   * the following format. Comments must only have a single voice on either
+   * side, e.g. "1,0", "0,1".
    *
    *     "agreement,disagreement"
    *
-   * Further, the votes summary provides contextual information for the claim or
-   * comment at hand. The following definitions may apply respectively.
+   * Further, the summary summary provides contextual information for the claim
+   * or comment at hand. The following definitions may apply respectively.
    *
    *     "agreement" represents all votes cast in agreement with the given
    *     statement. The values here may be the amount of tokens or the amount of
@@ -447,9 +429,24 @@ export interface SearchO_Object_Public {
    *     "resolve".
    *
    *
-   * @generated from protobuf field: string votes = 1200;
+   * @generated from protobuf field: string summary = 1000;
    */
-  votes: string;
+  summary: string;
+  /**
+   * text is the human readable description the user provides in order to make a
+   * statement whether kind equals "claim" or "comment". This text may be
+   * provided in markdown format. This text might be as long as a common blog
+   * post. This text might contain external links.
+   *
+   * @generated from protobuf field: string text = 1100;
+   */
+  text: string;
+  /**
+   * token is the token in which the staked reputation is denominated.
+   *
+   * @generated from protobuf field: string token = 1200;
+   */
+  token: string;
 }
 declare class SearchI$Type extends MessageType<SearchI> {
   constructor();
