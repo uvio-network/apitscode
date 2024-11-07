@@ -558,13 +558,15 @@ class SearchO_Object_Public$Type extends MessageType {
         super("note.SearchO_Object_Public", [
             { no: 100, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 200, name: "message", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "resource", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 300, name: "pointer", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 400, name: "resource", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
         message.kind = "";
         message.message = "";
+        message.pointer = "";
         message.resource = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -581,7 +583,10 @@ class SearchO_Object_Public$Type extends MessageType {
                 case /* string message */ 200:
                     message.message = reader.string();
                     break;
-                case /* string resource */ 300:
+                case /* string pointer */ 300:
+                    message.pointer = reader.string();
+                    break;
+                case /* string resource */ 400:
                     message.resource = reader.string();
                     break;
                 default:
@@ -602,9 +607,12 @@ class SearchO_Object_Public$Type extends MessageType {
         /* string message = 200; */
         if (message.message !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.message);
-        /* string resource = 300; */
+        /* string pointer = 300; */
+        if (message.pointer !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.pointer);
+        /* string resource = 400; */
         if (message.resource !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.resource);
+            writer.tag(400, WireType.LengthDelimited).string(message.resource);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

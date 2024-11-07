@@ -202,16 +202,6 @@ export interface SearchO_Object_Public {
    * @generated from protobuf field: string name = 200;
    */
   name: string;
-  /**
-   * pointers is the user's mapping between note kinds and note pointers. The
-   * pointers tracked here per notification topic keep track of the point up to
-   * which users caught up with their notifications.
-   *
-   * @generated from protobuf field: map<string, string> pointers = 300;
-   */
-  pointers: {
-    [key: string]: string;
-  };
 }
 declare class SearchI$Type extends MessageType<SearchI> {
   constructor();
@@ -450,7 +440,6 @@ declare class SearchO_Object_Public$Type extends MessageType<SearchO_Object_Publ
     options: BinaryReadOptions,
     target?: SearchO_Object_Public,
   ): SearchO_Object_Public;
-  private binaryReadMap300;
   internalBinaryWrite(
     message: SearchO_Object_Public,
     writer: IBinaryWriter,

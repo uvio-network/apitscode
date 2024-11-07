@@ -571,15 +571,13 @@ class SearchO_Object_Public$Type extends MessageType {
     constructor() {
         super("user.SearchO_Object_Public", [
             { no: 100, name: "image", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "pointers", kind: "map", K: 9 /*ScalarType.STRING*/, V: { kind: "scalar", T: 9 /*ScalarType.STRING*/ } }
+            { no: 200, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
         message.image = "";
         message.name = "";
-        message.pointers = {};
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
@@ -595,9 +593,6 @@ class SearchO_Object_Public$Type extends MessageType {
                 case /* string name */ 200:
                     message.name = reader.string();
                     break;
-                case /* map<string, string> pointers */ 300:
-                    this.binaryReadMap300(message.pointers, reader, options);
-                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -609,22 +604,6 @@ class SearchO_Object_Public$Type extends MessageType {
         }
         return message;
     }
-    binaryReadMap300(map, reader, options) {
-        let len = reader.uint32(), end = reader.pos + len, key, val;
-        while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
-            switch (fieldNo) {
-                case 1:
-                    key = reader.string();
-                    break;
-                case 2:
-                    val = reader.string();
-                    break;
-                default: throw new globalThis.Error("unknown map entry field for field user.SearchO_Object_Public.pointers");
-            }
-        }
-        map[key ?? ""] = val ?? "";
-    }
     internalBinaryWrite(message, writer, options) {
         /* string image = 100; */
         if (message.image !== "")
@@ -632,9 +611,6 @@ class SearchO_Object_Public$Type extends MessageType {
         /* string name = 200; */
         if (message.name !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.name);
-        /* map<string, string> pointers = 300; */
-        for (let k of globalThis.Object.keys(message.pointers))
-            writer.tag(300, WireType.LengthDelimited).fork().tag(1, WireType.LengthDelimited).string(k).tag(2, WireType.LengthDelimited).string(message.pointers[k]).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

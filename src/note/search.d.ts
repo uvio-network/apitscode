@@ -115,6 +115,7 @@ export interface SearchI_Object_Symbol {}
  *                 },
  *                 "public": {
  *                     "kind": "customLists",
+ *                     "pointer": "1731005852",
  *                     "resource": "47263476523"
  *                 }
  *             }
@@ -201,10 +202,18 @@ export interface SearchO_Object_Public {
    */
   message: string;
   /**
+   * pointer is the user specific note pointer for the given note kind. This
+   * pointer tracks the point up to which the calling user caught up with the
+   * given notification topic.
+   *
+   * @generated from protobuf field: string pointer = 300;
+   */
+  pointer: string;
+  /**
    * resource is the object ID that a user has to be notified about in case
    * there is no message.
    *
-   * @generated from protobuf field: string resource = 300;
+   * @generated from protobuf field: string resource = 400;
    */
   resource: string;
 }
