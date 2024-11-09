@@ -173,13 +173,11 @@ export const UpdateI_Object_Intern = new UpdateI_Object_Intern$Type();
 class UpdateI_Object_Public$Type extends MessageType {
     constructor() {
         super("note.UpdateI_Object_Public", [
-            { no: 100, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "pointer", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "pointer", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
-        message.kind = "";
         message.pointer = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -190,10 +188,7 @@ class UpdateI_Object_Public$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string kind */ 100:
-                    message.kind = reader.string();
-                    break;
-                case /* string pointer */ 200:
+                case /* string pointer */ 100:
                     message.pointer = reader.string();
                     break;
                 default:
@@ -208,12 +203,9 @@ class UpdateI_Object_Public$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string kind = 100; */
-        if (message.kind !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.kind);
-        /* string pointer = 200; */
+        /* string pointer = 100; */
         if (message.pointer !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.pointer);
+            writer.tag(100, WireType.LengthDelimited).string(message.pointer);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

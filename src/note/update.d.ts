@@ -14,7 +14,6 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         "object": [
  *             {
  *                 "public": {
- *                     "kind": "customLists",
  *                     "pointer": "1730811282"
  *                 }
  *             }
@@ -64,16 +63,10 @@ export interface UpdateI_Object_Intern {}
  */
 export interface UpdateI_Object_Public {
   /**
-   * kind is the notification type being updated.
-   *
-   * @generated from protobuf field: string kind = 100;
-   */
-  kind: string;
-  /**
    * pointer is the acknowleged checkpoint for notifications delivered up to the
    * provided point.
    *
-   * @generated from protobuf field: string pointer = 200;
+   * @generated from protobuf field: string pointer = 100;
    */
   pointer: string;
 }
