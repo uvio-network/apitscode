@@ -106,6 +106,9 @@ export interface SearchI_Object_Symbol {}
  * SearchO is the output for searching notes.
  *
  *     {
+ *         "filter": {
+ *             "pointer": "1689001255"
+ *         },
  *         "object": [
  *             {
  *                 "intern": {
@@ -115,7 +118,6 @@ export interface SearchI_Object_Symbol {}
  *                 },
  *                 "public": {
  *                     "kind": "customLists",
- *                     "pointer": "1731005852",
  *                     "resource": "47263476523"
  *                 }
  *             }
@@ -138,7 +140,15 @@ export interface SearchO {
 /**
  * @generated from protobuf message note.SearchO_Filter
  */
-export interface SearchO_Filter {}
+export interface SearchO_Filter {
+  /**
+   * pointer is the user specific note pointer, which tracks the point up to
+   * which the calling user caught up with all of its notifications.
+   *
+   * @generated from protobuf field: string pointer = 100;
+   */
+  pointer: string;
+}
 /**
  * @generated from protobuf message note.SearchO_Object
  */
@@ -202,18 +212,10 @@ export interface SearchO_Object_Public {
    */
   message: string;
   /**
-   * pointer is the user specific note pointer for the given note kind. This
-   * pointer tracks the point up to which the calling user caught up with the
-   * given notification topic.
-   *
-   * @generated from protobuf field: string pointer = 300;
-   */
-  pointer: string;
-  /**
    * resource is the object ID that a user has to be notified about in case
    * there is no message.
    *
-   * @generated from protobuf field: string resource = 400;
+   * @generated from protobuf field: string resource = 300;
    */
   resource: string;
 }

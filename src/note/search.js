@@ -382,18 +382,40 @@ export const SearchO = new SearchO$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SearchO_Filter$Type extends MessageType {
     constructor() {
-        super("note.SearchO_Filter", []);
+        super("note.SearchO_Filter", [
+            { no: 100, name: "pointer", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
+        message.pointer = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
     }
     internalBinaryRead(reader, length, options, target) {
-        return target ?? this.create();
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string pointer */ 100:
+                    message.pointer = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
     }
     internalBinaryWrite(message, writer, options) {
+        /* string pointer = 100; */
+        if (message.pointer !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.pointer);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -558,15 +580,13 @@ class SearchO_Object_Public$Type extends MessageType {
         super("note.SearchO_Object_Public", [
             { no: 100, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 200, name: "message", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "pointer", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "resource", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 300, name: "resource", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
         message.kind = "";
         message.message = "";
-        message.pointer = "";
         message.resource = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -583,10 +603,7 @@ class SearchO_Object_Public$Type extends MessageType {
                 case /* string message */ 200:
                     message.message = reader.string();
                     break;
-                case /* string pointer */ 300:
-                    message.pointer = reader.string();
-                    break;
-                case /* string resource */ 400:
+                case /* string resource */ 300:
                     message.resource = reader.string();
                     break;
                 default:
@@ -607,12 +624,9 @@ class SearchO_Object_Public$Type extends MessageType {
         /* string message = 200; */
         if (message.message !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.message);
-        /* string pointer = 300; */
-        if (message.pointer !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.pointer);
-        /* string resource = 400; */
+        /* string resource = 300; */
         if (message.resource !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.resource);
+            writer.tag(300, WireType.LengthDelimited).string(message.resource);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
